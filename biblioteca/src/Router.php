@@ -8,7 +8,7 @@ class Router
     /** @var Route[] */
     private array $routes = [];
 
-    public function route(string $path): Route
+    public function addRoute(string $path): Route
     {
         if (!isset($this->routes[$path])) {
             $this->routes[$path] = new Route($path);
@@ -18,6 +18,10 @@ class Router
 
     public function getRoute(string $path): ?Route
     {
+        if (substr($path, -1) === '/') {
+            $path = rtrim($path, '/');
+        }
+
         if (!isset($this->routes[$path])) {
             return null;
         }

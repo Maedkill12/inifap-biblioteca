@@ -6,11 +6,11 @@ use Inifap\Biblioteca\Router;
 use Inifap\Biblioteca\App;
 
 $router = new Router();
-$router->route("/biblioteca")->get(function () {
+$router->addRoute("/biblioteca")->get(function () {
     include __DIR__ . './src/views/home/index.php';
 });
-$router->route("/biblioteca/users/:id")->get(function () {
-    echo "Hola mundo 2";
+$router->addRoute("/biblioteca/users/:id")->get(function () {
+    echo "Hola mundo 3";
 });
 
 

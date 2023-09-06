@@ -17,10 +17,6 @@ class App
         $path = $_SERVER['REQUEST_URI'] ?? '/';
         $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 
-        if (substr($path, -1) === '/') {
-            $path = rtrim($path, '/');
-        }
-
         $route = $this->router->getRoute($path);
 
         if ($route) {

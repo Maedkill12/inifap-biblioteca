@@ -9,6 +9,10 @@ class Route
 
     public function __construct(string $path)
     {
+        if (substr($path, -1) === '/') {
+            $path = rtrim($path, '/');
+        }
+
         $this->path = $path;
     }
 
