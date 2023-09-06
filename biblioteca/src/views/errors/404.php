@@ -84,7 +84,7 @@
 
 
 		<div class="container">
-			Home
+			Not Found
 		</div>
 	</main>
 

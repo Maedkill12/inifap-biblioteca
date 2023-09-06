@@ -2,15 +2,19 @@
 
 require_once __DIR__ . './vendor/autoload.php';
 
-use Inifap\Biblioteca\Router;
-use Inifap\Biblioteca\App;
+const VIEW_PATH = __DIR__ . '/src/views';
 
-$router = new Router();
+use Inifap\Biblioteca\App;
+use Inifap\Biblioteca\RouterManager;
+
+$router = new RouterManager();
 $router->addRoute("/biblioteca")->get(function () {
-    include __DIR__ . './src/views/home/index.php';
+    include VIEW_PATH . '/home/index.php';
+    // echo "Hola mundo";
 });
-$router->addRoute("/biblioteca/users/:id")->get(function () {
-    echo "Hola mundo 3";
+$router->addRoute("/biblioteca/users/:id/:author")->get(function (array $params) {
+    // echo "Hola mundo 3" . $params['id'] . " " . $params['author'];
+    // include VIEW_PATH . '/home/index.php';
 });
 
 
