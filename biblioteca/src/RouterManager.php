@@ -10,6 +10,7 @@ class RouterManager
 
     public function addRoute(string $path): Route
     {
+        $path = ROOT_PATH . $path;
         if (!isset($this->routes[$path])) {
             $this->routes[$path] = new Route($path);
         }

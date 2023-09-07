@@ -2,6 +2,8 @@
 
 namespace Inifap\Biblioteca;
 
+use Inifap\Biblioteca\Controllers\AdminController;
+use Inifap\Biblioteca\Routes\AdminRoutes;
 use Inifap\Biblioteca\Routes\HomeRoutes;
 use Inifap\Biblioteca\Controllers\HomeController;
 use Inifap\Biblioteca\Controllers\ArticleController;
@@ -19,6 +21,7 @@ class App
         $this->routerManager = new RouterManager();
         $this->homeRoutes = new HomeRoutes($this->routerManager, new HomeController());
         $this->articleRoutes = new ArticleRoutes($this->routerManager, new ArticleController());
+        new AdminRoutes($this->routerManager, new AdminController());
     }
 
     public function run(): void

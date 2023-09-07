@@ -14,8 +14,8 @@ class HomeRoutes extends Routes
     }
     public function setupRoutes(): void
     {
-        $this->routerManager->addRoute("/biblioteca")->get(function (array $params) {
-            $this->controller->render($params);
+        $this->routerManager->addRoute("/")->get(function (array $params) {
+            $this->controller->render($params, "home");
         });
     }
 }
