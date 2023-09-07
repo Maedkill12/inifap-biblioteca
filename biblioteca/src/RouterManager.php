@@ -16,7 +16,7 @@ class RouterManager
         return $this->routes[$path];
     }
 
-    public function resolve(string $path, string $method): void
+    public function resolve(string $path, string $method, ?array $body = []): void
     {
         if (substr($path, -1) === '/') {
             $path = rtrim($path, '/');
@@ -31,12 +31,13 @@ class RouterManager
                 if (preg_match('/^' . $regex . '$/', $path, $params) && $route->hasMethod($method)) {
                     array_shift($params);
                     $route->setParams($params);
-                    $this->callback($route, $method);
+                    $this->callback($route, $method, $body);
                     return;
                 }
             } else {
-                if ($route->getPath() === $path) {
-                    $this->callback($route, $method);
+                if ($route->getPath() === $path && $route->hasMethod($method)) {
+                    $this->callback($route, $method, $body);
+                    return;
                 }
             }
         }
@@ -45,11 +46,11 @@ class RouterManager
         include VIEW_PATH . '/errors/404.php';
     }
 
-    private function callback(Route $route, string $method): void
+    private function callback(Route $route, string $method, ?array $body = []): void
     {
         $callback = $route->getMethods()[$method];
         if (is_callable($callback)) {
-            $callback($route->getParams());
+            $callback($route->getParams(), $body);
             return;
         } else {
             echo "Method not allowed";

@@ -4,7 +4,9 @@
   "type": "project",
   "autoload": {
     "psr-4": {
-      "Inifap\\Biblioteca\\": "src/"
+      "Inifap\\Biblioteca\\": "src",
+      "Inifap\\Biblioteca\\Routes\\": "src/routes",
+      "Inifap\\Biblioteca\\Controllers\\": "src/controllers"
     }
   }
 }
