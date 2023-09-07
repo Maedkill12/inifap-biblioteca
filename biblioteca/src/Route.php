@@ -44,6 +44,12 @@ class Route
         return $this;
     }
 
+    public function patch(callable $callback): self
+    {
+        $this->methods['PATCH'] = $callback;
+        return $this;
+    }
+
     public function delete(callable $callback): self
     {
         $this->methods['DELETE'] = $callback;
@@ -62,6 +68,7 @@ class Route
             $this->params[$this->paramsPosition[$key]] = $value;
         }
     }
+
 
     public function getParams(): array
     {
