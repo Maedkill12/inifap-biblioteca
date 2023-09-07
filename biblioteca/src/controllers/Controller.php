@@ -8,10 +8,21 @@ abstract class Controller
     {
     }
 
-    abstract public function create(?array $params, ?array $body): void;
-    abstract public function find(?array $params, ?array $body): void;
-    abstract public function update(?array $params, ?array $body): void;
-    abstract public function delete(?array $params, ?array $body): void;
+    public function create(?array $params, ?array $body): void
+    {
+    }
+    public function find(?array $params, ?array $body): void
+    {
+    }
+    public function update(?array $params, ?array $body): void
+    {
+    }
+    public function delete(?array $params, ?array $body): void
+    {
+    }
 
-    abstract public function render(?array $params): void;
+    public function render(?array $params, $dirName): void
+    {
+        include VIEW_PATH . "/$dirName/index.php";
+    }
 }

@@ -84,7 +84,7 @@
 
 
 		<div class="container">
-			Article Details
+			Detalles de un articulo
 		</div>
 	</main>
 

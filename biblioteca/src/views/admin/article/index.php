@@ -84,7 +84,7 @@
 
 
 		<div class="container">
-			Lista de articulos
+			Formulario para subir o editar articulos
 		</div>
 	</main>
 

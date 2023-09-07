@@ -84,7 +84,7 @@
 
 
 		<div class="container">
-			Not Found
+			Error 404 página no encontrada
 		</div>
 	</main>
 
