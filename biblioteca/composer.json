@@ -8,5 +8,8 @@
       "Inifap\\Biblioteca\\Routes\\": "src/routes",
       "Inifap\\Biblioteca\\Controllers\\": "src/controllers"
     }
+  },
+  "require": {
+    "vlucas/phpdotenv": "^5.5"
   }
 }

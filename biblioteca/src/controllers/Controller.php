@@ -8,16 +8,21 @@ abstract class Controller
     {
     }
 
-    public function create(?array $params, ?array $body): void
+    public function create(?array $params, ?array $body, ?array $query): void
     {
     }
-    public function find(?array $params, ?array $body): void
+    public function findOne(?array $params, ?array $body, ?array $query): void
     {
     }
-    public function update(?array $params, ?array $body): void
+
+    public function findMany(?array $params, ?array $body, ?array $query): void
     {
     }
-    public function delete(?array $params, ?array $body): void
+
+    public function update(?array $params, ?array $body, ?array $query): void
+    {
+    }
+    public function delete(?array $params, ?array $body, ?array $query): void
     {
     }
 

@@ -14,19 +14,23 @@ class ArticleRoutes extends Routes
 
     public function setupRoutes(): void
     {
-        $this->routerManager->addRoute("/articulo/:id")->get(function (array $params) {
-            $this->controller->render($params, "article");
-        });
+        $this->routerManager->addRoute("/articulo/:id")
+            ->get(function (array $params) {
+                $this->controller->render($params, "article");
+            })
+            ->put(function (array $params, array $body, array $query) {
+                $this->controller->update($params, $body, $query);
+            })
+            ->delete(function (array $params, array $body, array $query) {
+                $this->controller->delete($params, $body, $query);
+            });
 
         $this->routerManager->addRoute("/articulo")
-            ->post(function (array $params, array $body) {
-                $this->controller->create($params, $body);
+            ->post(function (array $params, array $body, array $query) {
+                $this->controller->create($params, $body, $query);
             })
-            ->put(function (array $params, array $body) {
-                $this->controller->update($params, $body);
-            })
-            ->delete(function (array $params, array $body) {
-                $this->controller->delete($params, $body);
+            ->get(function (array $params, array $body, array $query) {
+                $this->controller->findMany($params, $body, $query);
             });
     }
 }
