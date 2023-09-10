@@ -17,7 +17,6 @@ class App
     private RouterManager $routerManager;
     private HomeRoutes $homeRoutes;
     private ArticleRoutes $articleRoutes;
-    private PDO $pdo;
 
 
     public function __construct()
@@ -27,14 +26,6 @@ class App
         $this->articleRoutes = new ArticleRoutes($this->routerManager, new ArticleController());
         new AdminRoutes($this->routerManager, new AdminController());
         static::$appInstance = $this;
-
-        try {
-            $this->pdo = new PDO("pgsql:host=" . $_ENV['DB_HOST'] . ";port=" . $_ENV['DB_PORT'] . ";dbname=" . $_ENV['DB_NAME'], $_ENV["DB_USER"], $_ENV["DB_PASSWORD"]);
-            $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-            exit;
-        }
     }
 
     public function run(): void
@@ -64,10 +55,6 @@ class App
         $this->routerManager->resolve($path, $method, $body, $query);
     }
 
-    public function getPdo(): PDO
-    {
-        return $this->pdo;
-    }
 
     public static function getInstance(): App
     {
