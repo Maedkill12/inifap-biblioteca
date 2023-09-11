@@ -2,6 +2,7 @@
 
 require_once __DIR__ . './vendor/autoload.php';
 
+
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
@@ -12,11 +13,6 @@ const CONTROLELRS_PATH = __DIR__ . '/src/controllers';
 const MODULES_PATH = __DIR__ . '/src/modules';
 
 
-use Inifap\Biblioteca\App;
 
-$app = new App();
-
-// echo '<pre>';
-// var_dump($_SERVER['REQUEST_URI'], $_SERVER['QUERY_STRING'], $_SERVER['REQUEST_METHOD']);
-// echo '</pre>';
+$app = new Inifap\Biblioteca\App();
 $app->run();
