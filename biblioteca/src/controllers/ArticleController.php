@@ -2,37 +2,115 @@
 
 namespace Inifap\Biblioteca\Controllers;
 
-class ArticleController extends Controller
-{
+use Inifap\Biblioteca\Models\Model;
 
-    public function __construct()
+abstract class ArticleController extends Controller
+{
+    protected Model $model;
+
+    public function __construct(Model $model)
     {
         parent::__construct();
+        $this->model = $model;
     }
 
-    public function create(?array $params, ?array $body): void
+    public function create(?array $params, ?array $body, ?array $query): void
     {
         header('Content-Type: application/json; charset=utf-8');
+        header('status: 400');
+        $result = $this->model->create($body);
+        if ($result) {
+            header('status: 201');
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Article created successfully',
+                'data' => $result
+            ]);
+            return;
+        }
+        header('status: 500');
         echo json_encode([
-            'status' => 'success',
-            'message' => 'Article created successfully'
+            'status' => 'error',
+            'message' => 'Error creating article'
         ]);
     }
-    public function find(?array $params, ?array $body): void
+    public function findOne(?array $params, ?array $body, ?array $query): void
     {
-    }
-    public function update(?array $params, ?array $body): void
-    {
+        header('Content-Type: application/json; charset=utf-8');
+        $result = $this->model->findOne(['id' => $params['id']]);
+        if ($result) {
+            header('status: 200');
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Article found successfully',
+                'data' => $result
+            ]);
+            return;
+        }
+        header('status: 404');
         echo json_encode([
-            'status' => 'success',
-            'message' => 'Article updated successfully'
+            'status' => 'error',
+            'message' => 'Article not found'
         ]);
     }
-    public function delete(?array $params, ?array $body): void
+
+    public function findMany(?array $params, ?array $body, ?array $query): void
     {
+        header('Content-Type: application/json; charset=utf-8');
+        $result = $this->model->findMany($query);
+        if ($result) {
+            header('status: 200');
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Articles found successfully',
+                'data' => $result
+            ]);
+            return;
+        }
+        header('status: 404');
         echo json_encode([
-            'status' => 'success',
-            'message' => 'Article created successfully'
+            'status' => 'error',
+            'message' => 'Articles not found'
+        ]);
+    }
+
+    public function update(?array $params, ?array $body, ?array $query): void
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        ["id" => $id] = $params;
+        $result = $this->model->update(array_merge($body, ['id' => $id]));
+        if ($result) {
+            header('status: 200');
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Article updated successfully',
+                'data' => $result
+            ]);
+            return;
+        }
+        header('status: 404');
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Article not found'
+        ]);
+    }
+    public function delete(?array $params, ?array $body, ?array $query): void
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        $result = $this->model->delete(['id' => $params['id']]);
+        if ($result) {
+            header('status: 200');
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Article deleted successfully',
+                'data' => $result
+            ]);
+            return;
+        }
+        header('status: 404');
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Article not found'
         ]);
     }
 }

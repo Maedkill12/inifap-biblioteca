@@ -5,4 +5,10 @@
   RewriteCond %{REQUEST_FILENAME} !-f
 
   RewriteRule ^(.*)$ index.php [L,QSA]
+  RewriteRule src(/.*)?$ - [F,NC]
 </IfModule>
+
+<Files ~ "\.(env|json|config.js|md|gitignore|gitattributes|lock|src)$">
+  Order allow,deny
+  Deny from all
+</Files>

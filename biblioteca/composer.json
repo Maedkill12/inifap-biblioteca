@@ -6,7 +6,12 @@
     "psr-4": {
       "Inifap\\Biblioteca\\": "src",
       "Inifap\\Biblioteca\\Routes\\": "src/routes",
-      "Inifap\\Biblioteca\\Controllers\\": "src/controllers"
+      "Inifap\\Biblioteca\\Controllers\\": "src/controllers",
+      "Inifap\\Biblioteca\\Models\\": "src/models"
     }
+  },
+  "require": {
+    "vlucas/phpdotenv": "^5.5",
+    "nikic/fast-route": "^1.3"
   }
 }
