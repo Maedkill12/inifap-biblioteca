@@ -2,13 +2,9 @@
 
 namespace Inifap\Biblioteca;
 
-use Inifap\Biblioteca\Controllers\AdminController;
 use Inifap\Biblioteca\Routes\AdminRoutes;
 use Inifap\Biblioteca\Routes\HomeRoutes;
-use Inifap\Biblioteca\Controllers\HomeController;
-use Inifap\Biblioteca\Controllers\ArticleController;
 use Inifap\Biblioteca\Routes\ArticleRoutes;
-use PDO;
 
 class App
 {
@@ -22,9 +18,9 @@ class App
     public function __construct()
     {
         $this->routerManager = new RouterManager();
-        $this->homeRoutes = new HomeRoutes($this->routerManager, new HomeController());
-        $this->articleRoutes = new ArticleRoutes($this->routerManager, new ArticleController());
-        new AdminRoutes($this->routerManager, new AdminController());
+        $this->homeRoutes = new HomeRoutes($this->routerManager);
+        $this->articleRoutes = new ArticleRoutes($this->routerManager);
+        new AdminRoutes($this->routerManager);
         static::$appInstance = $this;
     }
 
@@ -52,6 +48,7 @@ class App
         if (in_array($method, ['POST', 'PUT', 'PATCH', 'DELETE'])) {
             $body = json_decode(file_get_contents('php://input'), true) ?? [];
         }
+
         $this->routerManager->resolve($path, $method, $body, $query);
     }
 

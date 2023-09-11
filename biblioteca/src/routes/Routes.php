@@ -8,12 +8,10 @@ use Inifap\Biblioteca\RouterManager;
 abstract class Routes
 {
     protected  RouterManager $routerManager;
-    protected Controller $controller;
 
-    public function __construct(RouterManager $routerManager, Controller $controller)
+    public function __construct(RouterManager $routerManager)
     {
         $this->routerManager = $routerManager;
-        $this->controller = $controller;
         $this->setupRoutes();
     }
 

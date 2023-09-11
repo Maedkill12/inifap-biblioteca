@@ -2,8 +2,6 @@
 
 namespace Inifap\Biblioteca\Models;
 
-use Inifap\Biblioteca\App;
-
 abstract class Model
 {
     protected \PDO $pdo;

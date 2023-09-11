@@ -2,74 +2,25 @@
 
 namespace Inifap\Biblioteca\Controllers;
 
-use Inifap\Biblioteca\Models\ScientificArticle;
+use Inifap\Biblioteca\Models\Model;
 
-class ArticleController extends Controller
+abstract class ArticleController extends Controller
 {
-    private ScientificArticle $scientificArticle;
+    protected Model $model;
 
-    public function __construct()
+    public function __construct(Model $model)
     {
         parent::__construct();
-        $this->scientificArticle = new ScientificArticle();
+        $this->model = $model;
     }
 
     public function create(?array $params, ?array $body, ?array $query): void
     {
         header('Content-Type: application/json; charset=utf-8');
-        header('status: 201');
-        // We need to check if the body has the required fields, we need to specify the missing fields in the response
-        if (!isset($body['publicacion'])) {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Missing publicacion field'
-            ]);
-            return;
-        }
-        if (!isset($body['liga'])) {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Missing liga field'
-            ]);
-            return;
-        }
-        if (!isset($body['muestra'])) {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Missing muestra field'
-            ]);
-            return;
-        }
-        if (!isset($body['cuenta'])) {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Missing cuenta field'
-            ]);
-            return;
-        }
-        if (!isset($body['ano'])) {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Missing ano field'
-            ]);
-            return;
-        }
-        if (!isset($body['mensaje'])) {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Missing mensaje field'
-            ]);
-            return;
-        }
-        if (!isset($body['publicacionot'])) {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Missing publicacionot field'
-            ]);
-            return;
-        }
-        $result = $this->scientificArticle->create($body);
+        header('status: 400');
+        $result = $this->model->create($body);
         if ($result) {
+            header('status: 201');
             echo json_encode([
                 'status' => 'success',
                 'message' => 'Article created successfully',
@@ -77,6 +28,7 @@ class ArticleController extends Controller
             ]);
             return;
         }
+        header('status: 500');
         echo json_encode([
             'status' => 'error',
             'message' => 'Error creating article'
@@ -84,24 +36,81 @@ class ArticleController extends Controller
     }
     public function findOne(?array $params, ?array $body, ?array $query): void
     {
+        header('Content-Type: application/json; charset=utf-8');
+        $result = $this->model->findOne(['id' => $params['id']]);
+        if ($result) {
+            header('status: 200');
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Article found successfully',
+                'data' => $result
+            ]);
+            return;
+        }
+        header('status: 404');
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Article not found'
+        ]);
     }
 
     public function findMany(?array $params, ?array $body, ?array $query): void
     {
+        header('Content-Type: application/json; charset=utf-8');
+        $result = $this->model->findMany($query);
+        if ($result) {
+            header('status: 200');
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Articles found successfully',
+                'data' => $result
+            ]);
+            return;
+        }
+        header('status: 404');
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Articles not found'
+        ]);
     }
 
     public function update(?array $params, ?array $body, ?array $query): void
     {
+        header('Content-Type: application/json; charset=utf-8');
+        ["id" => $id] = $params;
+        $result = $this->model->update(array_merge($body, ['id' => $id]));
+        if ($result) {
+            header('status: 200');
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Article updated successfully',
+                'data' => $result
+            ]);
+            return;
+        }
+        header('status: 404');
         echo json_encode([
-            'status' => 'success',
-            'message' => 'Article updated successfully'
+            'status' => 'error',
+            'message' => 'Article not found'
         ]);
     }
     public function delete(?array $params, ?array $body, ?array $query): void
     {
+        header('Content-Type: application/json; charset=utf-8');
+        $result = $this->model->delete(['id' => $params['id']]);
+        if ($result) {
+            header('status: 200');
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Article deleted successfully',
+                'data' => $result
+            ]);
+            return;
+        }
+        header('status: 404');
         echo json_encode([
-            'status' => 'success',
-            'message' => 'Article created successfully'
+            'status' => 'error',
+            'message' => 'Article not found'
         ]);
     }
 }

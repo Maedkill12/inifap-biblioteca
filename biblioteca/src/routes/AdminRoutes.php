@@ -2,15 +2,17 @@
 
 namespace Inifap\Biblioteca\Routes;
 
-
+use Inifap\Biblioteca\Controllers\AdminController;
 use \Inifap\Biblioteca\RouterManager;
 use \Inifap\Biblioteca\Controllers\Controller;
 
 class AdminRoutes extends Routes
 {
-    public function __construct(RouterManager $routerManager, Controller $controller)
+    private AdminController $controller;
+    public function __construct(RouterManager $routerManager)
     {
-        parent::__construct($routerManager, $controller);
+        parent::__construct($routerManager);
+        $this->controller = new AdminController();
     }
 
     public function setupRoutes(): void
