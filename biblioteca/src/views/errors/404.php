@@ -84,7 +84,7 @@
 
 
 		<div class="container">
-			Lista de articulos
+			Error 404 página no encontrada
 		</div>
 	</main>
 

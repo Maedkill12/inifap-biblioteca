@@ -84,7 +84,7 @@
 
 
 		<div class="container">
-			Lista de articulos
+			Inicio de sesion
 		</div>
 	</main>
 

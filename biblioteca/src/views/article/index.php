@@ -84,7 +84,7 @@
 
 
 		<div class="container">
-			Lista de articulos
+			Detalles de un articulo
 		</div>
 	</main>
 

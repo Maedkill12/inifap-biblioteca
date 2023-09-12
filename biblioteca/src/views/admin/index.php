@@ -84,7 +84,7 @@
 
 
 		<div class="container">
-			Lista de articulos
+			Lista de articulos para el administrador
 		</div>
 	</main>
 
