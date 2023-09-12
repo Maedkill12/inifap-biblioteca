@@ -78,15 +78,24 @@ class App
 
             // Admin Routes
             $r->addRoute('GET', ROOT_PATH . '/admin', function ($params, $body, $query) {
+                $this->adminController->isAuth();
                 $this->adminController->render($params, "admin");
             });
             $r->addRoute('GET', ROOT_PATH . '/admin/login', function ($params, $body, $query) {
                 $this->adminController->render($params, "admin/login");
             });
+            $r->addRoute("POST", ROOT_PATH . "/admin/login", function ($params, $body, $query) {
+                $this->adminController->login($body["API_KEY"] ?? "");
+            });
+            $r->addRoute("POST", ROOT_PATH . "/admin/logout", function ($params, $body, $query) {
+                $this->adminController->logout();
+            });
             $r->addRoute('GET', ROOT_PATH . '/admin/articulo', function ($params, $body, $query) {
+                $this->adminController->isAuth();
                 $this->adminController->render($params, "admin/article");
             });
             $r->addRoute('GET', ROOT_PATH . '/admin/articulo/{id:\d+}', function ($params, $body, $query) {
+                $this->adminController->isAuth();
                 $this->adminController->render($params, "admin/article");
             });
         });
