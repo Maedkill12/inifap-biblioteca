@@ -20,12 +20,11 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 define('ROOT_PATH', substr(str_replace('\\', '/', realpath(dirname(__FILE__))), strlen(str_replace('\\', '/', realpath($_SERVER['DOCUMENT_ROOT'])))));
+define('PUBLIC_PATH', "http://" . $_SERVER['HTTP_HOST'] . ROOT_PATH . '/public');
 
 const VIEW_PATH = __DIR__ . '/src/views';
-const CONTROLELRS_PATH = __DIR__ . '/src/controllers';
-const MODULES_PATH = __DIR__ . '/src/modules';
-
-
+const CONTROLLERS_PATH = __DIR__ . '/src/controllers';
+const MODELS_PATH = __DIR__ . '/src/modules';
 
 $app = new Inifap\Biblioteca\App();
 $app->run();
