@@ -7,67 +7,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" href='http://inifap.test/biblioteca/public/assets/style.css'>
-
-	<style>
-		.search {
-			width: 580px;
-			height: 50px;
-			max-width: 100%;
-			max-height: 100%;
-			margin-left: auto;
-			margin-right: auto;
-			justify-content: center;
-			display: flex;
-
-		}
-
-		.search input {
-			width: 580px;
-			height: 50px;
-			max-width: 100%;
-			max-height: 100%;
-			margin-left: auto;
-			margin-right: auto;
-			justify-content: center;
-			background-color: rgba(30, 147, 92, 0.47);
-			color: #046E24;
-			border-color: rgba(30, 147, 92, 0.47);
-		}
-
-		input::placeholder {
-			color: #046E24;
-			justify-content: center;
-			padding-left: 150px;
-		}
-
-		.search button {
-			width: 75px;
-			height: 50px;
-			max-width: 100%;
-			max-height: 100%;
-			margin-left: auto;
-			margin-right: auto;
-			justify-content: center;
-			background-color: rgba(30, 147, 92, 0.47);
-			color: #046E24;
-			border-color: rgba(30, 147, 92, 0.47);
-		}
-
-		.filtro button {
-			width: 75px;
-			height: 45px;
-			max-width: 100%;
-			max-height: 100%;
-			margin-left: auto;
-			margin-right: auto;
-			justify-content: center;
-			background-color: rgba(30, 147, 92, 0.47);
-			color: #046E24;
-			border-color: rgba(30, 147, 92, 0.47);
-		}
-	</style>
-
 	<!--NO MODIFICAR-->
 	<title>INIFAP C.E. Zacatecas</title>
 
@@ -85,6 +24,10 @@
 		gtag('config', 'G-HXXJYQTXCE');
 	</script>
 	<link rel='stylesheet' type='text/css' href='https://framework-gb.cdn.gob.mx/assets/styles/main.css'>
+
+	<?php
+	echo "<link rel='stylesheet' type='text/css' href='" . PUBLIC_PATH . "/assets/home.css'>";
+	?>
 </head>
 
 <body>
