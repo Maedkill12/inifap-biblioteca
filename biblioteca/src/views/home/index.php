@@ -1,11 +1,72 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
 
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href='http://inifap.test/biblioteca/public/assets/style.css'>
+
+	<style>
+		.search {
+			width: 580px;
+			height: 50px;
+			max-width: 100%;
+			max-height: 100%;
+			margin-left: auto;
+			margin-right: auto;
+			justify-content: center;
+			display: flex;
+
+		}
+
+		.search input {
+			width: 580px;
+			height: 50px;
+			max-width: 100%;
+			max-height: 100%;
+			margin-left: auto;
+			margin-right: auto;
+			justify-content: center;
+			background-color: rgba(30, 147, 92, 0.47);
+			color: #046E24;
+			border-color: rgba(30, 147, 92, 0.47);
+		}
+
+		input::placeholder {
+			color: #046E24;
+			justify-content: center;
+			padding-left: 150px;
+		}
+
+		.search button {
+			width: 75px;
+			height: 50px;
+			max-width: 100%;
+			max-height: 100%;
+			margin-left: auto;
+			margin-right: auto;
+			justify-content: center;
+			background-color: rgba(30, 147, 92, 0.47);
+			color: #046E24;
+			border-color: rgba(30, 147, 92, 0.47);
+		}
+
+		.filtro button {
+			width: 75px;
+			height: 45px;
+			max-width: 100%;
+			max-height: 100%;
+			margin-left: auto;
+			margin-right: auto;
+			justify-content: center;
+			background-color: rgba(30, 147, 92, 0.47);
+			color: #046E24;
+			border-color: rgba(30, 147, 92, 0.47);
+		}
+	</style>
 
 	<!--NO MODIFICAR-->
 	<title>INIFAP C.E. Zacatecas</title>
@@ -84,8 +145,50 @@
 
 
 		<div class="container">
-			Lista de articulos
+			<img src="http://inifap.test/biblioteca/public/images/banner.png" alt="cabecera INIFAP" />
+			<div class="search">
+				<input type="search" id="search" name="search" placeholder="Buscar por libro, autor, año, etc" />
+				<button type="sumbit" id="lupe"> <img src="http://inifap.test/biblioteca/public/images/lupita.png" width="32" height="32" /></button>
+			</div>
+			<div class="filtro">
+				<button type="sumbit" id="filtro">Filtro</button>
+			</div>
+			<h2>Recien agregados</h2>
 		</div>
+		<div id="carrusel">
+			<a href="#" class="left-arrow"><img src="http://inifap.test/biblioteca/public/images/flecha2.png" width="84" height="125" /></a>
+			<div class="carrusel">
+				<div class="product" id="product_0">
+					<img src="http://inifap.test/biblioteca/public/publicaciones/HospederosDigital.png" alt="Hospederos digital" width="167" height="250" />
+					<h5>Hospederos digital</h5>
+					<a>leer</a>
+				</div>
+				<div class="product" id="product_1">
+					<img src="http://inifap.test/biblioteca/public/publicaciones/NematodosDigital.png" alt="Nematodos digital" width="167" height="250" />
+					<h5>Nematodos Digital</h5>
+					<a>leer</a>
+				</div>
+				<div class="product" id="product_2">
+					<img src="http://inifap.test/biblioteca/public/publicaciones/Planeacion2018.png" alt="Planeación 2018" width="167" height="250" />
+					<h5>Planeación 2018</h5>
+					<a>leer</a>
+				</div>
+				<div class="product" id="product_3">
+					<img src="http://inifap.test/biblioteca/public/publicaciones/GusanoCogollero.png" alt="Gusano Cogollero" width="167" height="250" />
+					<h5>Gusano Cogollero</h5>
+					<a>leer</a>
+				</div>
+				<div class="product" id="product_4">
+					<img src="http://inifap.test/biblioteca/public/publicaciones/ProductoresTallarín_seg.png" alt="Productores Tallarín" width="167" height="250" />
+					<h5>Productores Tallarín</h5>
+					<a>leer</a>
+				</div>
+				<div class="product" id="product_5">
+					<img src="http://inifap.test/biblioteca/public/publicaciones/Folleto para productores Virus_seg.png" alt="Folleto para productores Virus_seg" width="167" height="250" />
+					<h5>Folleto para productores Virus</h5>
+					<a>leer</a>
+				</div>
+				<a href="#" class="right-arrow"><img src="http://inifap.test/biblioteca/public/images/flecha.png" width="84" height="125" /></a>
 	</main>
 
 	<!--<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>-->

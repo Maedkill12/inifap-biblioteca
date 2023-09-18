@@ -26,6 +26,7 @@ const CONTROLELRS_PATH = __DIR__ . '/src/controllers';
 const MODULES_PATH = __DIR__ . '/src/modules';
 
 
+header("Access-Control-Allow-Origin: *");
 
 $app = new Inifap\Biblioteca\App();
 $app->run();

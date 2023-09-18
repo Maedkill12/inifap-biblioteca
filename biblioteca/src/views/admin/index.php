@@ -84,7 +84,9 @@
 
 
 		<div class="container">
-			Lista de articulos para el administrador
+			<h1>Ingreso al sistema</h1>
+			<p for="contraseña">Ingrese el codigo<input name="contraseña" id="contraseña" type="password"/></p>
+			
 		</div>
 	</main>
 
