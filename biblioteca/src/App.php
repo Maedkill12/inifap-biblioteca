@@ -77,15 +77,15 @@ class App
             });
 
             // Admin Routes
+            $r->addRoute("POST", ROOT_PATH . "/api/admin/login", function ($params, $body, $query) {
+                $this->adminController->login($body["API_KEY"] ?? "");
+            });
             $r->addRoute('GET', ROOT_PATH . '/admin', function ($params, $body, $query) {
                 $this->adminController->isAuth();
                 $this->adminController->render($params, "admin");
             });
             $r->addRoute('GET', ROOT_PATH . '/admin/login', function ($params, $body, $query) {
                 $this->adminController->render($params, "admin/login");
-            });
-            $r->addRoute("POST", ROOT_PATH . "/admin/login", function ($params, $body, $query) {
-                $this->adminController->login($body["API_KEY"] ?? "");
             });
             $r->addRoute("POST", ROOT_PATH . "/admin/logout", function ($params, $body, $query) {
                 $this->adminController->logout();
@@ -123,6 +123,7 @@ class App
         if (in_array($httpMethod, ['POST', 'PUT', 'PATCH', 'DELETE'])) {
             $body = json_decode(file_get_contents('php://input'), true) ?? [];
         }
+
         $uri = rawurldecode($uri);
 
         $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
