@@ -93,7 +93,7 @@
 				<img src="http://inifap.test/biblioteca/public/images/candado.png" alt="candado" width="161" height="163" />
 				<h3>Modo Administrador</h3>
 				<input type="password" id="password" name="password" placeholder="Ingrese la clave" />
-				<button>Entrar</button>
+				<button id="login">Entrar</button>
 				<a>Olvide mi clave de acceso</a>
 			</div>
 		</div>
@@ -103,45 +103,10 @@
 
 	<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
 
-	<script type="text/javascript">
-		$gmx(document).ready(function() {
-
-			var consulta;
-
-			//hacemos focus al campo de búsqueda
-			$("#busqueda").focus();
-
-			//comprobamos si se pulsa una tecla
-			$("#busqueda").keyup(function(e) {
-
-				//obtenemos el texto introducido en el campo de búsqueda
-				consulta = $("#busqueda").val();
-
-				//hace la búsqueda
-
-				$.ajax({
-					type: "POST",
-					url: "buscar.php",
-					data: "b=" + consulta,
-					dataType: "html",
-					beforeSend: function() {
-						//imagen de carga
-						$("#resultado").html("<p align='center'><img src='ajax-loader.gif' /></p>");
-					},
-					error: function() {
-						alert("error petición ajax");
-					},
-					success: function(data) {
-						document.getElementById("resultado").style.display = "block";
-						$("#resultado").empty();
-						$("#resultado").append(data);
-
-					}
-				});
-			});
-		});
-	</script>
-
+	<?php
+	echo "<script src='" . PUBLIC_PATH . "/js/main.js'></script>";
+	echo "<script src='" . PUBLIC_PATH . "/js/login.js'></script>";
+	?>
 </body>
 
 </html>

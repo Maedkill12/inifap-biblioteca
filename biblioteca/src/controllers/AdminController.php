@@ -20,7 +20,7 @@ class AdminController extends Controller
             echo json_encode(["status" => "success", "message" => "Logged in"]);
         } else {
             header("status: 401");
-            echo json_encode(["status" => "error", "message" => "Unauthorized"]);
+            echo json_encode(["status" => "error", "message" => "Unauthorized", "key" => $secretKey]);
         }
     }
 
