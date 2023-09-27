@@ -53,3 +53,65 @@ input::placeholder {
   color: #046e24;
   border-color: rgba(30, 147, 92, 0.47);
 }
+ 
+#carrusel {
+  display: flex;
+  width:600px;
+  overflow:hidden;
+  height:320px;
+  position:relative;
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+#carrusel .left-arrow {
+  position:absolute;
+  left:10px;
+  z-index:1;
+  top:50%;
+  margin-top:-9px;
+  height:320px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#carrusel .right-arrow {
+  position:absolute;
+  right:10px;
+  z-index:1;
+  top:50%;
+  margin-top:-9px;
+  display: flex;
+  height:320px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.carrusel {
+  width:4000px;
+  left:0px;
+  position:absolute;
+  z-index:0;
+  
+}
+
+.carrusel>div {
+  display: flex;
+  height: 203px;
+  margin-right: 5px;
+  width: 195px;
+  text-align:center;
+}
+
+.carrusel img {
+  cursor:pointer;
+}
+
+.product{
+  display: inline-block;
+}
+
+.cabecera{
+  display: inline-block;
+  text-align: center;
+}

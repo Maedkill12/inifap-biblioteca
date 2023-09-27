@@ -84,7 +84,16 @@
 
 
 		<div class="container">
-			Formulario para subir o editar articulos
+			<div class="cabecera">
+				<img src="http://inifap.test/biblioteca/public/images/banner.png" alt="cabecera INIFAP" />
+			</div>
+			<div class="search">
+				<input type="search" id="search" name="search" placeholder="Buscar por libro, autor, año, etc" />
+				<button type="sumbit" id="lupe"> <img src="http://inifap.test/biblioteca/public/images/lupita.png" width="32" height="32" /></button>
+			</div>
+			<div class="filtro">
+				<button type="sumbit" id="subir">Subir<img src="http://inifap.test/biblioteca/public/images/up.png" width="32" height="32" /></button>
+			</div>
 		</div>
 	</main>
 

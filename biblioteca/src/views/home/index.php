@@ -88,7 +88,9 @@
 
 
 		<div class="container">
-			<img src="http://inifap.test/biblioteca/public/images/banner.png" alt="cabecera INIFAP" />
+			<div class="cabecera">
+				<img src="http://inifap.test/biblioteca/public/images/banner.png" alt="cabecera INIFAP" />
+			</div>
 			<div class="search">
 				<input type="search" id="search" name="search" placeholder="Buscar por libro, autor, año, etc" />
 				<button type="sumbit" id="lupe"> <img src="http://inifap.test/biblioteca/public/images/lupita.png" width="32" height="32" /></button>
@@ -96,11 +98,11 @@
 			<div class="filtro">
 				<button type="sumbit" id="filtro">Filtro</button>
 			</div>
-			<h2>Recien agregados</h2>
+			<h3>Recien agregados</h3>
 		</div>
 		<div id="carrusel">
-			<a href="#" class="left-arrow"><img src="http://inifap.test/biblioteca/public/images/flecha2.png" width="84" height="125" /></a>
-			<div class="carrusel">
+			<a href="#" class="left-arrow"><img src="http://inifap.test/biblioteca/public/images/flecha2.png" width="42" height="63" /></a>
+			<div class="carrusel1">
 				<div class="product" id="product_0">
 					<img src="http://inifap.test/biblioteca/public/publicaciones/HospederosDigital.png" alt="Hospederos digital" width="167" height="250" />
 					<h5>Hospederos digital</h5>
@@ -131,7 +133,8 @@
 					<h5>Folleto para productores Virus</h5>
 					<a>leer</a>
 				</div>
-				<a href="#" class="right-arrow"><img src="http://inifap.test/biblioteca/public/images/flecha.png" width="84" height="125" /></a>
+				<a href="#" class="right-arrow"><img src="http://inifap.test/biblioteca/public/images/flecha.png" width="42" height="63" /></a>
+
 	</main>
 
 	<!--<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>-->
