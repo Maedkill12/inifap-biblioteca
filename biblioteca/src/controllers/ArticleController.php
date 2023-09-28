@@ -14,6 +14,11 @@ abstract class ArticleController extends Controller
         $this->model = $model;
     }
 
+    public function getModel(): Model
+    {
+        return $this->model;
+    }
+
     public function create(?array $params, ?array $body, ?array $query): void
     {
         header('Content-Type: application/json; charset=utf-8');

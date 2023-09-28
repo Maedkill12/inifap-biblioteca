@@ -33,7 +33,18 @@ class App
         $dispatcher = \FastRoute\simpleDispatcher(function (\FastRoute\RouteCollector $r) {
             // Home Routes
             $r->addRoute('GET', ROOT_PATH . '/', function ($params, $body, $query) {
-                $this->homeController->render($params, "home");
+                $type = $query['type'] ?? "tecnico";
+                $type = $type === "tecnico" ? "tecnico" : "cientifico";
+                // Fetch scientific articles
+                $articles = [];
+
+                if ($type === "cientifico") {
+                    $articles = $this->scientificArticleController->getModel()->findMany($query);
+                } else {
+                    $articles = $this->technicalArticleController->getModel()->findMany($query);
+                }
+
+                $this->homeController->render(["articles" => $articles, "isScientific" => $type === "cientifico"], "home");
             });
 
             // Scientific Article Routes
