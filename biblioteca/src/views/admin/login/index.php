@@ -99,14 +99,13 @@
 		</div>
 	</main>
 
-	<!--<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>-->
-
 	<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
 
-	<?php
-	echo "<script src='" . PUBLIC_PATH . "/js/main.js'></script>";
-	echo "<script src='" . PUBLIC_PATH . "/js/login.js'></script>";
-	?>
+	<script>
+		const URL_BASE = "<?= URL_BASE ?>";
+		const API_BASE = "<?= API_BASE ?>";
+	</script>
+	<script src="<?= PUBLIC_PATH . "/js/login.js" ?>"></script>
 </body>
 
 </html>
