@@ -1,7 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
 
-
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,10 +23,8 @@
 		gtag('config', 'G-HXXJYQTXCE');
 	</script>
 	<link rel='stylesheet' type='text/css' href='https://framework-gb.cdn.gob.mx/assets/styles/main.css'>
+	<link rel="stylesheet" href="<?= PUBLIC_PATH . '/css/home.css' ?>">
 
-	<?php
-	echo "<link rel='stylesheet' type='text/css' href='" . PUBLIC_PATH . "/assets/home.css'>";
-	?>
 </head>
 
 <body>
@@ -89,97 +86,51 @@
 
 		<div class="container">
 			<div class="cabecera">
-				<img src="http://inifap.test/biblioteca/public/images/banner.png" alt="cabecera INIFAP" />
+				<img src="<?= PUBLIC_PATH . "/images/banner.png" ?>" alt="cabecera INIFAP" />
 			</div>
 			<div class="search">
 				<input type="search" id="search" name="search" placeholder="Buscar por libro, autor, año, etc" />
-				<button type="sumbit" id="lupe"> <img src="http://inifap.test/biblioteca/public/images/lupita.png" width="32" height="32" /></button>
+				<button type="sumbit" id="lupe"> <img src="<?= PUBLIC_PATH . "/images/lupita.png" ?>" width="32" height="32" /></button>
 			</div>
 			<div class="filtro">
 				<button type="sumbit" id="filtro">Filtro</button>
 			</div>
 			<h3>Recien agregados</h3>
+
+			<div id="carrusel">
+				<?php
+				$articles = $params['articles'];
+				$isScientific = $params['isScientific'];
+				?>
+				<a href="#" class="left-arrow"><img src="<?= PUBLIC_PATH . "/images/flecha2.png" ?>" width="42" height="63" /></a>
+				>
+				<?php foreach ($articles as $article) : ?>
+					<?php
+					$publicacion = $article['publicacion'];
+					$liga = $article['liga'];
+					$muestra = $article['muestra'];
+					$cuenta = $article['cuenta'];
+					$ano = $article['ano'];
+					$mensaje = $article['mensaje'];
+					$publicacionot = $isScientific ? $article['publicacionot'] : null;
+					$imagen = $isScientific ? "cientifico.png" : $article['imagen'];
+					$id = $article['id'];
+					?>
+					<div class="carrusel1">
+						<div class="product" id="product_<?= $id ?>">
+							<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
+							<h5><?= $publicacion ?></h5>
+							<a href="<?= URL_BASE . "/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>">leer</a>
+						</div>
+					</div>
+				<?php endforeach; ?>
+				<a href="#" class="right-arrow"><img src="<?= PUBLIC_PATH . "/images/flecha.png" ?>" width="42" height="63" /></a>
+			</div>
 		</div>
-		<div id="carrusel">
-			<a href="#" class="left-arrow"><img src="http://inifap.test/biblioteca/public/images/flecha2.png" width="42" height="63" /></a>
-			<div class="carrusel1">
-				<div class="product" id="product_0">
-					<img src="http://inifap.test/biblioteca/public/publicaciones/HospederosDigital.png" alt="Hospederos digital" width="167" height="250" />
-					<h5>Hospederos digital</h5>
-					<a>leer</a>
-				</div>
-				<div class="product" id="product_1">
-					<img src="http://inifap.test/biblioteca/public/publicaciones/NematodosDigital.png" alt="Nematodos digital" width="167" height="250" />
-					<h5>Nematodos Digital</h5>
-					<a>leer</a>
-				</div>
-				<div class="product" id="product_2">
-					<img src="http://inifap.test/biblioteca/public/publicaciones/Planeacion2018.png" alt="Planeación 2018" width="167" height="250" />
-					<h5>Planeación 2018</h5>
-					<a>leer</a>
-				</div>
-				<div class="product" id="product_3">
-					<img src="http://inifap.test/biblioteca/public/publicaciones/GusanoCogollero.png" alt="Gusano Cogollero" width="167" height="250" />
-					<h5>Gusano Cogollero</h5>
-					<a>leer</a>
-				</div>
-				<div class="product" id="product_4">
-					<img src="http://inifap.test/biblioteca/public/publicaciones/ProductoresTallarín_seg.png" alt="Productores Tallarín" width="167" height="250" />
-					<h5>Productores Tallarín</h5>
-					<a>leer</a>
-				</div>
-				<div class="product" id="product_5">
-					<img src="http://inifap.test/biblioteca/public/publicaciones/Folleto para productores Virus_seg.png" alt="Folleto para productores Virus_seg" width="167" height="250" />
-					<h5>Folleto para productores Virus</h5>
-					<a>leer</a>
-				</div>
-				<a href="#" class="right-arrow"><img src="http://inifap.test/biblioteca/public/images/flecha.png" width="42" height="63" /></a>
 
 	</main>
 
-	<!--<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>-->
-
 	<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
-
-	<script type="text/javascript">
-		$gmx(document).ready(function() {
-
-			var consulta;
-
-			//hacemos focus al campo de búsqueda
-			$("#busqueda").focus();
-
-			//comprobamos si se pulsa una tecla
-			$("#busqueda").keyup(function(e) {
-
-				//obtenemos el texto introducido en el campo de búsqueda
-				consulta = $("#busqueda").val();
-
-				//hace la búsqueda
-
-				$.ajax({
-					type: "POST",
-					url: "buscar.php",
-					data: "b=" + consulta,
-					dataType: "html",
-					beforeSend: function() {
-						//imagen de carga
-						$("#resultado").html("<p align='center'><img src='ajax-loader.gif' /></p>");
-					},
-					error: function() {
-						alert("error petición ajax");
-					},
-					success: function(data) {
-						document.getElementById("resultado").style.display = "block";
-						$("#resultado").empty();
-						$("#resultado").append(data);
-
-					}
-				});
-			});
-		});
-	</script>
-
 </body>
 
 </html>

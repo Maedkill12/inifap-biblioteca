@@ -24,10 +24,7 @@
 		gtag('config', 'G-HXXJYQTXCE');
 	</script>
 	<link rel='stylesheet' type='text/css' href='https://framework-gb.cdn.gob.mx/assets/styles/main.css'>
-
-	<?php
-	echo "<link rel='stylesheet' type='text/css' href='" . PUBLIC_PATH . "/assets/login.css'>";
-	?>
+	<link rel="stylesheet" href="<?= PUBLIC_PATH . '/css/login.css' ?>">
 </head>
 
 <body>
@@ -88,9 +85,9 @@
 
 
 		<div class="container">
-			<img src="http://inifap.test/biblioteca/public/images/banner.png" alt="cabecera INIFAP" />
+			<img src="<?= PUBLIC_PATH . "/images/banner.png" ?>" alt="cabecera INIFAP" />
 			<div class="InicioSesion">
-				<img src="http://inifap.test/biblioteca/public/images/candado.png" alt="candado" width="161" height="163" />
+				<img src="<?= PUBLIC_PATH . "/images/candado.png" ?>" alt="candado" width="161" height="163" />
 				<h3>Modo Administrador</h3>
 				<input type="password" id="password" name="password" placeholder="Ingrese la clave" />
 				<button id="login">Entrar</button>
