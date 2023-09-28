@@ -21,6 +21,8 @@ $dotenv->load();
 
 define('ROOT_PATH', substr(str_replace('\\', '/', realpath(dirname(__FILE__))), strlen(str_replace('\\', '/', realpath($_SERVER['DOCUMENT_ROOT'])))));
 define('PUBLIC_PATH', "http://" . $_SERVER['HTTP_HOST'] . ROOT_PATH . '/public');
+define("URL_BASE", "http://" . $_SERVER['HTTP_HOST'] . ROOT_PATH);
+define("API_BASE", "http://" . $_SERVER['HTTP_HOST'] . ROOT_PATH . "/api");
 
 const VIEW_PATH = __DIR__ . '/src/views';
 const CONTROLLERS_PATH = __DIR__ . '/src/controllers';
