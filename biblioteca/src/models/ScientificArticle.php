@@ -27,7 +27,8 @@ class ScientificArticle extends Model
                 "mensaje" => $mensaje,
                 "publicacionot" =>
                 $publicacionot,
-                "id" => $this->pdo->lastInsertId()
+                "id" => $this->pdo->lastInsertId(),
+                "categoria" => "cientifico"
             ];
         }
         return [];
@@ -36,7 +37,7 @@ class ScientificArticle extends Model
     public function findOne(array $body): array
     {
         ["id" => $id] = $body;
-        $stmt = $this->pdo->prepare("SELECT * FROM public.pub_cientificas WHERE id = ?");
+        $stmt = $this->pdo->prepare("SELECT *, 'cientifico' as categoria FROM public.pub_cientificas WHERE id = ?");
         $stmt->execute([$id]);
         $result = $stmt->fetch();
         if ($result) {
@@ -52,7 +53,7 @@ class ScientificArticle extends Model
         $limit = $body['limit'] ?? 10;
         $page = $body['page'] ?? 1;
         $offset = ($page - 1) * $limit;
-        $stmt = $this->pdo->prepare("SELECT * FROM public.pub_cientificas WHERE ano = ? OR publicacion LIKE ? LIMIT ? OFFSET ?");
+        $stmt = $this->pdo->prepare("SELECT *, 'cientifico' as categoria FROM public.pub_cientificas WHERE ano = ? OR publicacion LIKE ? LIMIT ? OFFSET ?");
         $stmt->execute([$year, "%$search%", $limit, $offset]);
         $result = $stmt->fetchAll();
         if ($result) {
@@ -93,7 +94,8 @@ class ScientificArticle extends Model
                     "mensaje" => $mensaje,
                     "publicacionot" =>
                     $publicacionot,
-                    "id" => $id
+                    "id" => $id,
+                    "categoria" => "cientifico"
                 ];
             }
         }
@@ -118,7 +120,8 @@ class ScientificArticle extends Model
                     "cuenta" => $result['cuenta'],
                     "ano" => $result['ano'],
                     "mensaje" => $result['mensaje'],
-                    "publicacionot" => $result['publicacionot']
+                    "publicacionot" => $result['publicacionot'],
+                    "categoria" => "cientifico"
                 ];
             }
         }

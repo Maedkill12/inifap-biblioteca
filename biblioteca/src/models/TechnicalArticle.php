@@ -26,7 +26,8 @@ class TechnicalArticle extends Model
                 "ano" => $ano,
                 "mensaje" => $mensaje,
                 "imagen" => $imagen,
-                "id" => $this->pdo->lastInsertId()
+                "id" => $this->pdo->lastInsertId(),
+                "categoria" => "tecnico"
             ];
         }
         return [];
@@ -35,7 +36,7 @@ class TechnicalArticle extends Model
     public function findOne(array $body): array
     {
         ["id" => $id] = $body;
-        $stmt = $this->pdo->prepare("SELECT * FROM public.pub_tecnicas WHERE id = ?");
+        $stmt = $this->pdo->prepare("SELECT *, 'tecnico' as categoria FROM public.pub_tecnicas WHERE id = ?");
         $stmt->execute([$id]);
         $result = $stmt->fetch();
         if ($result) {
@@ -52,11 +53,12 @@ class TechnicalArticle extends Model
         $limit = $body['limit'] ?? 10;
         $page = $body['page'] ?? 1;
         $offset = ($page - 1) * $limit;
-        $stmt = $this->pdo->prepare("SELECT * FROM public.pub_tecnicas WHERE ano = ? OR publicacion LIKE ? LIMIT ? OFFSET ?");
+        $stmt = $this->pdo->prepare("SELECT *, 'tecnico' as categoria FROM public.pub_tecnicas WHERE ano = ? OR publicacion LIKE ? LIMIT ? OFFSET ?");
         $stmt->execute([$year, "%$search%", $limit, $offset]);
         $result = $stmt->fetchAll();
         if ($result) {
-            return $result;
+            $data = $result;
+            return $data;
         }
         return [];
     }
@@ -93,7 +95,8 @@ class TechnicalArticle extends Model
                     "mensaje" => $mensaje,
                     "imagen" =>
                     $imagen,
-                    "id" => $id
+                    "id" => $id,
+                    "categoria" => "tecnico"
                 ];
             }
         }
@@ -118,7 +121,8 @@ class TechnicalArticle extends Model
                     "cuenta" => $result['cuenta'],
                     "ano" => $result['ano'],
                     "mensaje" => $result['mensaje'],
-                    "imagen" => $result['imagen']
+                    "imagen" => $result['imagen'],
+                    "categoria" => "tecnico"
                 ];
             }
         }

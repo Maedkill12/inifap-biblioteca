@@ -17,6 +17,7 @@ abstract class Model
         }
     }
 
+
     abstract public function create(array $body): array;
     abstract public function findOne(array $body): array;
     abstract public function findMany(array $body): array;
