@@ -41,6 +41,7 @@ class ScientificArticle extends Model
         $stmt->execute([$id]);
         $result = $stmt->fetch();
         if ($result) {
+            $result['recomendaciones'] = $this->getRecommendations($id);
             return $result;
         }
         return [];
@@ -126,6 +127,27 @@ class ScientificArticle extends Model
             }
         }
 
+        return [];
+    }
+
+    protected function getRecommendations(string $id): array
+    {
+        $sql = "SELECT DISTINCT public.pub_cientificas.id, 'cientifico' AS categoria
+                FROM public.pub_cientificas
+                WHERE id != ?
+                AND (
+                    publicacion LIKE CONCAT('%', (SELECT publicacion FROM public.pub_cientificas WHERE id = ?), '%') OR
+                    publicacion LIKE CONCAT('%', (SELECT publicacionot FROM public.pub_cientificas WHERE id = ?), '%') OR
+                    publicacionot LIKE CONCAT('%', (SELECT publicacion FROM public.pub_cientificas WHERE id = ?), '%') OR
+                    publicacionot LIKE CONCAT('%', (SELECT publicacionot FROM public.pub_cientificas WHERE id = ?), '%')
+                )
+                GROUP BY public.pub_cientificas.id LIMIT 5";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$id, $id, $id, $id, $id]);
+        $result = $stmt->fetchAll();
+        if ($result) {
+            return $result;
+        }
         return [];
     }
 }

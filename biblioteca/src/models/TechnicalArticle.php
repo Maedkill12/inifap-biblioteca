@@ -40,6 +40,7 @@ class TechnicalArticle extends Model
         $stmt->execute([$id]);
         $result = $stmt->fetch();
         if ($result) {
+            $result['recomendaciones'] = $this->getRecommendations($id);
             return $result;
         }
         return [];
@@ -127,6 +128,24 @@ class TechnicalArticle extends Model
             }
         }
 
+        return [];
+    }
+
+    protected function getRecommendations(string $id): array
+    {
+        $sql = "SELECT DISTINCT public.pub_tecnicas.id, 'cientifico' AS categoria
+        FROM public.pub_tecnicas
+        WHERE id != ?
+        AND (
+            publicacion LIKE CONCAT('%', (SELECT publicacion FROM public.pub_tecnicas WHERE id = ?), '%')
+        )
+        GROUP BY public.pub_tecnicas.id LIMIT 5";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$id, $id]);
+        $result = $stmt->fetchAll();
+        if ($result) {
+            return $result;
+        }
         return [];
     }
 }
