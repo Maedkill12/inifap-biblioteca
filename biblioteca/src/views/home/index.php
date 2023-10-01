@@ -113,7 +113,7 @@
 					$ano = $article['ano'];
 					$mensaje = $article['mensaje'];
 					$publicacionot = $isScientific ? $article['publicacionot'] : null;
-					$imagen = $isScientific ? "cientifico.png" : $article['imagen'];
+					$imagen = $article['imagen'];
 					$id = $article['id'];
 					?>
 					<div class="carrusel1">
