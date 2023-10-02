@@ -132,7 +132,7 @@ class ScientificArticle extends Model
 
     protected function getRecommendations(string $id): array
     {
-        $sql = "SELECT *, 'tecnico' as categoria, 'cientifico.jpg' AS imagen FROM public.pub_cientificas 
+        $sql = "SELECT *, 'cientifico' as categoria, 'cientifico.jpg' AS imagen FROM public.pub_cientificas 
         WHERE id != ?
         AND (
             publicacion LIKE (SELECT CONCAT('%', (string_to_array(publicacion, ' '))[1], '%') FROM public.pub_cientificas WHERE id = ?) OR
