@@ -87,6 +87,23 @@ class App
                 $this->technicalArticleController->delete($params, $body, $query);
             });
 
+            // All articles
+            $r->addRoute("GET", ROOT_PATH . '/api/articulo', function ($params, $body, $query) {
+                $query["limit"] = floor(($query["limit"] ?? 10) / 2);
+                $technical = $this->technicalArticleController->getModel()->findMany($query);
+                $scientific = $this->scientificArticleController->getModel()->findMany($query);
+                $result = array_merge($technical, $scientific);
+                shuffle($result);
+                header('Content-Type: application/json; charset=utf-8');
+                header('status: 200');
+                echo json_encode([
+                    'status' => 'success',
+                    'message' => 'Article found successfully',
+                    'data' => $result
+                ]);
+                return;
+            });
+
             // Admin Routes
             $r->addRoute("POST", ROOT_PATH . "/api/admin/login", function ($params, $body, $query) {
                 $this->adminController->login($body["API_KEY"] ?? "");
