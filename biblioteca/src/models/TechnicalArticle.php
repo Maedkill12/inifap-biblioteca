@@ -54,7 +54,7 @@ class TechnicalArticle extends Model
         $limit = $body['limit'] ?? 10;
         $page = $body['page'] ?? 1;
         $offset = ($page - 1) * $limit;
-        $stmt = $this->pdo->prepare("SELECT *, 'tecnico' as categoria FROM public.pub_tecnicas WHERE ano = ? OR publicacion LIKE ? LIMIT ? OFFSET ?");
+        $stmt = $this->pdo->prepare("SELECT *, 'tecnico' as categoria FROM public.pub_tecnicas WHERE ano = ? OR LOWER(publicacion) LIKE ? LIMIT ? OFFSET ?");
         $stmt->execute([$year, "%$search%", $limit, $offset]);
         $result = $stmt->fetchAll();
         if ($result) {

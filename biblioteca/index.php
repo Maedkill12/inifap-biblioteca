@@ -1,8 +1,5 @@
 ﻿<?php
 
-require_once __DIR__ . './vendor/autoload.php';
-
-
 ini_set('session.use_only_cookies', 1);
 ini_set('session.use_strict_mode', 1);
 
@@ -17,6 +14,7 @@ session_set_cookie_params([
 
 session_start();
 
+require_once  './vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
@@ -26,9 +24,9 @@ define('PUBLIC_PATH', "http://" . $_SERVER['HTTP_HOST'] . ROOT_PATH . '/public')
 define("URL_BASE", "http://" . $_SERVER['HTTP_HOST'] . ROOT_PATH);
 define("API_BASE", "http://" . $_SERVER['HTTP_HOST'] . ROOT_PATH . "/api");
 
-const VIEW_PATH = __DIR__ . '/src/views';
-const CONTROLLERS_PATH = __DIR__ . '/src/controllers';
-const MODELS_PATH = __DIR__ . '/src/modules';
+const VIEW_PATH =  './src/views';
+const CONTROLLERS_PATH =  './src/controllers';
+const MODELS_PATH =  './src/modules';
 
 $app = new Inifap\Biblioteca\App();
 $app->run();
