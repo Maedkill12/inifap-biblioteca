@@ -1,5 +1,14 @@
+.cabecera{
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  display: flex;
+}
+
 .search {
-  width: 580px;
+  width: 600px;
   height: 50px;
   max-width: 100%;
   max-height: 100%;
@@ -10,7 +19,7 @@
 }
 
 .search input {
-  width: 580px;
+  width: 600px;
   height: 50px;
   max-width: 100%;
   max-height: 100%;
@@ -25,7 +34,7 @@
 input::placeholder {
   color: #046e24;
   justify-content: center;
-  padding-left: 150px;
+  padding-left: 100px;
 }
 
 .search button {
@@ -43,10 +52,10 @@ input::placeholder {
 
 .filtro button {
   width: 75px;
-  height: 45px;
+  height: 50px;
   max-width: 100%;
   max-height: 100%;
-  margin-left: auto;
+  margin-left: 80%;
   margin-right: auto;
   justify-content: center;
   background-color: rgba(30, 147, 92, 0.47);
@@ -56,58 +65,77 @@ input::placeholder {
 
 #carrusel {
   display: flex;
-  width: 600px;
+  width: 1200px;
   overflow: hidden;
   position: relative;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 100%; 
+  margin-left: 0; 
 }
 
 #carrusel .left-arrow {
   position: absolute;
-  left: 10px;
+  left: -32px;
   z-index: 1;
-  top: 50%;
+  top: 30%;
   margin-top: -9px;
   height: 320px;
   margin-left: 20px;
   margin-right: 20px;
+ 
+ 
 }
 
 #carrusel .right-arrow {
   position: absolute;
-  right: 10px;
+  right:-25px;
   z-index: 1;
-  top: 50%;
+  top: 30%;
   margin-top: -9px;
   display: flex;
   height: 320px;
   margin-left: 20px;
-  margin-right: 20px;
+  margin-right: 0;
+  
 }
 
 .carrusel {
   left: 0px;
   z-index: 0;
+  max-width: 460px
 }
 
 .carrusel > div {
   display: flex;
   height: 203px;
   margin-right: 5px;
-  width: 195px;
+  width: 200px;
   text-align: center;
 }
 
-.carrusel img {
-  cursor: pointer;
+.carrusel1 img {
+  cursor: pointer; 
 }
 
+
+
 .product {
-  display: inline-block;
+  display: block;
+  padding: 8px;
+  margin: 5px;
+  left: 5px;
+  right: 5px;
+  text-align: center;
 }
+
+.product a{
+  color: #046e24;
+  }
 
 .cabecera {
   display: inline-block;
-  text-align: center;
+  justify-content: center;
+ 
+ 
 }

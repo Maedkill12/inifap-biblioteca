@@ -1,0 +1,85 @@
+.search {
+    width: 580px;
+    height: 50px;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    display: flex;
+  }
+  
+  .search input {
+    width: 580px;
+    height: 50px;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    background-color: rgba(30, 147, 92, 0.47);
+    color: #046e24;
+    border-color: rgba(30, 147, 92, 0.47);
+  }
+  
+  input::placeholder {
+    color: #046e24;
+    justify-content: center;
+    padding-left: 150px;
+  }
+  
+  .search button {
+    width: 75px;
+    height: 50px;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    background-color: rgba(30, 147, 92, 0.47);
+    color: #046e24;
+    border-color: rgba(30, 147, 92, 0.47);
+  }
+  
+  .libros button{
+    width: 75px;
+    height: 45px;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    background-color: rgba(30, 147, 92, 0.47);
+    color: #046e24;
+    border-color: rgba(30, 147, 92, 0.47);
+  }
+  .subir button{
+    width: 100px;
+    height: 45px;
+    max-width: 100%;
+    max-height: 100%;
+    background-color: rgba(30, 147, 92, 0.47);
+    color: #046e24;
+    border-color: rgba(30, 147, 92, 0.47);
+    padding-bottom: 10px;
+    display: block;
+    line-height: .3em;
+    text-align: left;
+    margin-left: 90%;
+    margin-right: auto;
+  }
+  .libros h5{
+    color: #046e24;
+  }
+  #libros .input{
+    width: 75px;
+    height: 50px;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    background-color: rgba(30, 147, 92, 0.47);
+    color: #046e24;
+    border-color: rgba(30, 147, 92, 0.47);
+  }

@@ -85,7 +85,7 @@
 
 
 		<div class="container">
-			<img src="<?= PUBLIC_PATH . "/images/banner.png" ?>" alt="cabecera INIFAP" />
+			<img src="<?= PUBLIC_PATH . "/images/banner.png" ?>" alt="cabecera INIFAP" width="1200" />
 			<div class="InicioSesion">
 				<img src="<?= PUBLIC_PATH . "/images/candado.png" ?>" alt="candado" width="161" height="163" />
 				<h3>Modo Administrador</h3>

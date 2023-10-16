@@ -84,7 +84,7 @@
 
 
 		<div class="container">
-			<h1>Lista de articulas</h1>
+			<h1>Lista de articulos</h1>
 		</div>
 	</main>
 

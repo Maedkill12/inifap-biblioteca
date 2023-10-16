@@ -24,6 +24,7 @@
 		gtag('config', 'G-HXXJYQTXCE');
 	</script>
 	<link rel='stylesheet' type='text/css' href='https://framework-gb.cdn.gob.mx/assets/styles/main.css'>
+	<link rel="stylesheet" href="<?= PUBLIC_PATH . '/css/art.css' ?>">
 </head>
 
 <body>
@@ -84,6 +85,7 @@
 
 
 		<div class="container">
+			<!--subir o editar articulo-->
 			<div class="cabecera">
 				<img src="http://inifap.test/biblioteca/public/images/banner.png" alt="cabecera INIFAP" />
 			</div>
@@ -91,8 +93,17 @@
 				<input type="search" id="search" name="search" placeholder="Buscar por libro, autor, año, etc" />
 				<button type="sumbit" id="lupe"> <img src="http://inifap.test/biblioteca/public/images/lupita.png" width="32" height="32" /></button>
 			</div>
-			<div class="filtro">
+			<div class="subir">
 				<button type="sumbit" id="subir">Subir<img src="http://inifap.test/biblioteca/public/images/up.png" width="32" height="32" /></button>
+			</div>
+			<div class="libros">
+				<img src="http://inifap.test/biblioteca/public/publicaciones/04 FT 103 Nemátodos digital.png" alt="Nematodos digital" width="167" height="250" />
+				<div class="titulo">
+					<h5>Titutlo</h5><input id="titulo" type="text" />
+					<h5>Autor</h5><input id="autor" type="text" />
+				</div>
+				<button type="sumbit" id="editar"><img src="http://inifap.test/biblioteca/public/images/edit.png" width="32" height="32" /></button>
+				<button type="sumbit" id="eliminar"><img src="http://inifap.test/biblioteca/public/images/delete.png" width="32" height="32" /></button>
 			</div>
 		</div>
 	</main>
