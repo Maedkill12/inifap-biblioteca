@@ -86,15 +86,16 @@
 
 		<div class="container">
 			<div class="cabecera">
-				<img src="<?= PUBLIC_PATH . "/images/banner.png" ?>" alt="cabecera INIFAP" />
+				<img src="<?= PUBLIC_PATH . "/images/banner.png" ?>" alt="cabecera INIFAP" width="1150" />
 			</div>
 			<div class="search">
 				<input type="search" id="search" name="search" placeholder="Buscar por libro, autor, año, etc" />
 				<button type="sumbit" id="lupe"> <img src="<?= PUBLIC_PATH . "/images/lupita.png" ?>" width="32" height="32" /></button>
+				<div class="filtro">
+					<button type="sumbit" id="filtro">Filtro</button>
+				</div>
 			</div>
-			<div class="filtro">
-				<button type="sumbit" id="filtro">Filtro</button>
-			</div>
+
 			<h3>Recien agregados</h3>
 
 			<div id="carrusel">
@@ -103,7 +104,6 @@
 				$isScientific = $params['isScientific'];
 				?>
 				<a href="#" class="left-arrow"><img src="<?= PUBLIC_PATH . "/images/flecha2.png" ?>" width="42" height="63" /></a>
-				>
 				<?php foreach ($articles as $article) : ?>
 					<?php
 					$publicacion = $article['publicacion'];
@@ -116,7 +116,7 @@
 					$imagen = $article['imagen'];
 					$id = $article['id'];
 					?>
-					<div class="carrusel1">
+					<div class="articulos">
 						<div class="product" id="product_<?= $id ?>">
 							<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
 							<h5><?= $publicacion ?></h5>
@@ -126,6 +126,67 @@
 				<?php endforeach; ?>
 				<a href="#" class="right-arrow"><img src="<?= PUBLIC_PATH . "/images/flecha.png" ?>" width="42" height="63" /></a>
 			</div>
+
+			<h3>Cientificos</h3>
+			<div id="carrusel">
+				<?php
+				$articles = $params['articles'];
+				$isScientific = $params['isScientific'];
+				?>
+				<a href="#" class="left-arrow"><img src="<?= PUBLIC_PATH . "/images/flecha2.png" ?>" width="42" height="63" /></a>
+				<?php foreach ($articles as $article) : ?>
+					<?php
+					$publicacion = $article['publicacion'];
+					$liga = $article['liga'];
+					$muestra = $article['muestra'];
+					$cuenta = $article['cuenta'];
+					$ano = $article['ano'];
+					$mensaje = $article['mensaje'];
+					$publicacionot = $isScientific ? $article['publicacionot'] : null;
+					$imagen = $article['imagen'];
+					$id = $article['id'];
+					?>
+					<div class="articulos">
+						<div class="product" id="product_<?= $id ?>">
+							<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
+							<h5><?= $publicacion ?></h5>
+							<a href="<?= URL_BASE . "/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>">leer</a>
+						</div>
+					</div>
+				<?php endforeach; ?>
+				<a href="#" class="right-arrow"><img src="<?= PUBLIC_PATH . "/images/flecha.png" ?>" width="42" height="63" /></a>
+			</div>
+			<h3> Tecnicos</h3>
+			<div id="carrusel">
+				<?php
+				$articles = $params['articles'];
+				$isScientific = $params['isScientific'];
+				?>
+				<a href="#" class="left-arrow"><img src="<?= PUBLIC_PATH . "/images/flecha2.png" ?>" width="42" height="63" /></a>
+				<?php foreach ($articles as $article) : ?>
+					<?php
+					$publicacion = $article['publicacion'];
+					$liga = $article['liga'];
+					$muestra = $article['muestra'];
+					$cuenta = $article['cuenta'];
+					$ano = $article['ano'];
+					$mensaje = $article['mensaje'];
+					$publicacionot = $isScientific ? $article['publicacionot'] : null;
+					$imagen = $article['imagen'];
+					$id = $article['id'];
+					?>
+					<div class="articulos">
+						<div class="product" id="product_<?= $id ?>">
+							<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
+							<h5><?= $publicacion ?></h5>
+							<a href="<?= URL_BASE . "/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>">leer</a>
+						</div>
+					</div>
+				<?php endforeach; ?>
+				<a href="#" class="right-arrow"><img src="<?= PUBLIC_PATH . "/images/flecha.png" ?>" width="42" height="63" /></a>
+			</div>
+
+
 		</div>
 
 	</main>
