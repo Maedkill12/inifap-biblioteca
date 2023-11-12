@@ -92,18 +92,20 @@
 			<div class="search">
 				<input type="search" id="search" name="search" placeholder="Buscar por libro, autor, año, etc" />
 				<button type="sumbit" id="lupe"> <img src="http://inifap.test/biblioteca/public/images/lupita.png" width="32" height="32" /></button>
-			</div>
-			<div class="subir">
-				<button type="sumbit" id="subir">Subir<img src="http://inifap.test/biblioteca/public/images/up.png" width="32" height="32" /></button>
+				<div class="subir">
+					<button type="sumbit" id="subir">Subir<img src="http://inifap.test/biblioteca/public/images/up.png" width="32" height="32" /></button>
+				</div>
 			</div>
 			<div class="libros">
 				<img src="http://inifap.test/biblioteca/public/publicaciones/04 FT 103 Nemátodos digital.png" alt="Nematodos digital" width="167" height="250" />
 				<div class="titulo">
-					<h5>Titutlo</h5><input id="titulo" type="text" />
+					<h5>Titulo</h5><input id="titulo" type="text" />
 					<h5>Autor</h5><input id="autor" type="text" />
 				</div>
-				<button type="sumbit" id="editar"><img src="http://inifap.test/biblioteca/public/images/edit.png" width="32" height="32" /></button>
-				<button type="sumbit" id="eliminar"><img src="http://inifap.test/biblioteca/public/images/delete.png" width="32" height="32" /></button>
+				<div class="edita">
+					<button type="sumbit" id="editar"><img src="http://inifap.test/biblioteca/public/images/edit.png" width="32" height="32" /></button>
+					<button type="sumbit" id="eliminar"><img src="http://inifap.test/biblioteca/public/images/delete.png" width="32" height="32" /></button>
+				</div>
 			</div>
 		</div>
 	</main>
