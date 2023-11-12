@@ -37,7 +37,7 @@ class ScientificArticle extends Model
     public function findOne(array $body): array
     {
         ["id" => $id] = $body;
-        $stmt = $this->pdo->prepare("SELECT *, 'cientifico' as categoria, 'cientifico.jpg' AS imagen FROM public.pub_cientificas WHERE id = ?");
+        $stmt = $this->pdo->prepare("SELECT *, 'cientifico' as categoria, 'cientifico.png' AS imagen FROM public.pub_cientificas WHERE id = ?");
         $stmt->execute([$id]);
         $result = $stmt->fetch();
         if ($result) {
@@ -54,7 +54,7 @@ class ScientificArticle extends Model
         $limit = $body['limit'] ?? 10;
         $page = $body['page'] ?? 1;
         $offset = ($page - 1) * $limit;
-        $stmt = $this->pdo->prepare("SELECT *, 'cientifico' AS categoria, 'cientifico.jpg' AS imagen FROM public.pub_cientificas WHERE ano = ? OR LOWER(publicacion) LIKE ? LIMIT ? OFFSET ?");
+        $stmt = $this->pdo->prepare("SELECT *, 'cientifico' AS categoria, 'cientifico.png' AS imagen FROM public.pub_cientificas WHERE ano = ? OR LOWER(publicacion) LIKE ? LIMIT ? OFFSET ?");
         $stmt->execute([$year, "%$search%", $limit, $offset]);
         $result = $stmt->fetchAll();
         if ($result) {
@@ -132,7 +132,7 @@ class ScientificArticle extends Model
 
     protected function getRecommendations(string $id): array
     {
-        $sql = "SELECT *, 'cientifico' as categoria, 'cientifico.jpg' AS imagen FROM public.pub_cientificas 
+        $sql = "SELECT *, 'cientifico' as categoria, 'cientifico.png' AS imagen FROM public.pub_cientificas 
         WHERE id != ?
         AND (
             publicacion LIKE (SELECT CONCAT('%', (string_to_array(publicacion, ' '))[1], '%') FROM public.pub_cientificas WHERE id = ?) OR
