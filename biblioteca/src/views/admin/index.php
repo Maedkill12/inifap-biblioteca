@@ -99,8 +99,8 @@
 			</div>
 			<div class="libros">
 				<img src="http://inifap.test/biblioteca/public/publicaciones/04 FT 103 Nemátodos digital.png" alt="Nematodos digital" width="167" height="250" />
-				<h5>Titutlo</h5><input id="titulo" type="text" />
-				<h5>Autor</h5><input id="autor" type="text" />
+				<h5>Titutlo</h5><input id="titulo" type="text" color="#046e24" />
+				<h5>Autor</h5><input id="autor" type="text" color="#046e24" />
 				<button type="sumbit" id="editar"><img src="http://inifap.test/biblioteca/public/images/edit.png" width="32" height="32" /></button>
 				<button type="sumbit" id="eliminar"><img src="http://inifap.test/biblioteca/public/images/delete.png" width="32" height="32" /></button>
 			</div>
