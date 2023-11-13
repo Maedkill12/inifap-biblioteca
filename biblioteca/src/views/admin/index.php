@@ -85,7 +85,7 @@
 			</ol>
 		</div>
 
-
+		<!-- Lista de articulos para el administrador -->
 		<div class="container">
 			<div class="cabecera">
 				<img src="http://inifap.test/biblioteca/public/images/banner.png" alt="cabecera INIFAP" />
@@ -98,11 +98,33 @@
 				<button type="sumbit" id="subir">Subir<img src="http://inifap.test/biblioteca/public/images/up.png" width="32" height="32" /></button>
 			</div>
 			<div class="libros">
-				<img src="http://inifap.test/biblioteca/public/publicaciones/04 FT 103 Nemátodos digital.png" alt="Nematodos digital" width="167" height="250" />
-				<h5>Titutlo</h5><input id="titulo" type="text" color="#046e24" />
-				<h5>Autor</h5><input id="autor" type="text" color="#046e24" />
-				<button type="sumbit" id="editar"><img src="http://inifap.test/biblioteca/public/images/edit.png" width="32" height="32" /></button>
-				<button type="sumbit" id="eliminar"><img src="http://inifap.test/biblioteca/public/images/delete.png" width="32" height="32" /></button>
+				<h2>Artículos disponibles</h2>
+				<?php
+				$articles = $params['articles'];
+				$isScientific = $params['isScientific'];
+				?>
+				<?php foreach ($articles as $article) : ?>
+					<?php
+					$publicacion = $article['publicacion'];
+					$liga = $article['liga'];
+					$muestra = $article['muestra'];
+					$cuenta = $article['cuenta'];
+					$ano = $article['ano'];
+					$mensaje = $article['mensaje'];
+					$publicacionot = $isScientific ? $article['publicacionot'] : null;
+					$imagen = $article['imagen'];
+					$id = $article['id'];
+					?>
+					<div>
+						<div id="product_<?= $id ?>">
+							<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
+							<h5><?= $publicacion ?></h5>
+							<a href="<?= URL_BASE . "/admin/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>"><img src="<?= PUBLIC_PATH . "/images/edit.png" ?>" width="32" height="32" /></a>
+							<a><img src="<?= PUBLIC_PATH . "/images/delete.png" ?>" width="32" height="32" /></a>
+						</div>
+					</div>
+				<?php endforeach; ?>
+
 			</div>
 		</div>
 	</main>

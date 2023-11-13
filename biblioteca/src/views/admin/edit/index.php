@@ -85,7 +85,7 @@
 
 
 		<div class="container">
-			<!--subir o editar articulo-->
+			<!-- editar articulo -->
 			<div class="cabecera">
 				<img src="http://inifap.test/biblioteca/public/images/banner.png" alt="cabecera INIFAP" />
 			</div>
@@ -96,15 +96,54 @@
 					<button type="sumbit" id="subir">Subir<img src="http://inifap.test/biblioteca/public/images/up.png" width="32" height="32" /></button>
 				</div>
 			</div>
+			<a href="<?= URL_BASE . '/admin' ?>">Regresar</a>
+			<h2>Editar artículo</h2>
 			<div class="libros">
-				<img src="http://inifap.test/biblioteca/public/publicaciones/04 FT 103 Nemátodos digital.png" alt="Nematodos digital" width="167" height="250" />
-				<div class="titulo">
-					<h5>Titulo</h5><input id="titulo" type="text" />
-					<h5>Autor</h5><input id="autor" type="text" />
+				<?php
+				$article = $params['article'];
+				$isScientific = $article["categoria"] === "cientifico";
+				$publicacion = $article['publicacion'];
+				$liga = $article['liga'];
+				$muestra = $article['muestra'];
+				$cuenta = $article['cuenta'];
+				$ano = $article['ano'];
+				$mensaje = $article['mensaje'];
+				$publicacionot = $isScientific ? $article['publicacionot'] : null;
+				$imagen = $article['imagen'];
+				$id = $article['id'];
+				?>
+				<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
+				<div class="form">
+					<div>
+						<label>Titulo</label><input name="publicacion" type="text" value="<?= $publicacion ?>" />
+					</div>
+					<div>
+						<label>Muestra</label><input name="muestra" type="text" value="<?= $muestra ?>" />
+					</div>
+					<div>
+						<label>Cuenta</label><input name="cuenta" type="text" value="<?= $cuenta ?>" />
+					</div>
+					<div>
+						<label>Año</label><input name="ano" type="text" value="<?= $ano ?>" />
+					</div>
+					<div>
+						<label>Mensaje</label><input name="mensaje" type="text" value="<?= $mensaje ?>" />
+					</div>
+					<div>
+						<label>Imagen</label><input name="imagen" type="file" value="<?= $imagen ?>" />
+					</div>
+					<div>
+						<label>PDF</label><input name="liga" type="file" value="<?= $liga ?>" />
+					</div>
+					<?php if ($isScientific) : ?>
+						<div>
+							<label>Publicación</label><input name="publicacionot" type="text" value="<?= $publicacionot ?>" />
+						</div>
+					<?php endif ?>
 				</div>
+				<input type="hidden" name="id" value="<?= $id ?>" />
 				<div class="edita">
-					<button type="sumbit" id="editar"><img src="http://inifap.test/biblioteca/public/images/edit.png" width="32" height="32" /></button>
-					<button type="sumbit" id="eliminar"><img src="http://inifap.test/biblioteca/public/images/delete.png" width="32" height="32" /></button>
+					<button type="sumbit" id="editar"><img src="<?= PUBLIC_PATH . "/images/edit.png" ?>" width="32" height="32" />Guardar</button>
 				</div>
 			</div>
 		</div>

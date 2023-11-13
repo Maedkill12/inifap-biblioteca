@@ -28,23 +28,31 @@ class App
         $this->adminController = new AdminController();
     }
 
+    private function getAllArticles($query)
+    {
+        $type = $query['type'] ?? "tecnico";
+        $type = $type === "tecnico" ? "tecnico" : "cientifico";
+        // Fetch scientific articles
+        $articles = [];
+
+        if ($type === "cientifico") {
+            $articles = $this->scientificArticleController->getModel()->findMany($query);
+        } else {
+            $articles = $this->technicalArticleController->getModel()->findMany($query);
+        }
+
+        return $articles;
+    }
+
     public function run(): void
     {
         $dispatcher = \FastRoute\simpleDispatcher(function (\FastRoute\RouteCollector $r) {
             // Home Routes
             $r->addRoute('GET', ROOT_PATH . '/', function ($params, $body, $query) {
                 $type = $query['type'] ?? "tecnico";
-                $type = $type === "tecnico" ? "tecnico" : "cientifico";
-                // Fetch scientific articles
-                $articles = [];
+                $articles = $this->getAllArticles($query);
 
-                if ($type === "cientifico") {
-                    $articles = $this->scientificArticleController->getModel()->findMany($query);
-                } else {
-                    $articles = $this->technicalArticleController->getModel()->findMany($query);
-                }
-
-                $this->homeController->render(["articles" => $articles, "isScientific" => $type === "cientifico"], "home");
+                $this->homeController->render(["articles" => $articles, "isScientific" => $type === "cientifico", ...$params], "home");
             });
 
             // Scientific Article Routes
@@ -110,7 +118,11 @@ class App
             });
             $r->addRoute('GET', ROOT_PATH . '/admin', function ($params, $body, $query) {
                 $this->adminController->isAuth();
-                $this->adminController->render($params, "admin");
+
+                $type = $query['type'] ?? "tecnico";
+                $articles = $this->getAllArticles($query);
+
+                $this->adminController->render(["articles" => $articles, "isScientific" => $type === "cientifico", ...$params], "admin");
             });
             $r->addRoute('GET', ROOT_PATH . '/admin/login', function ($params, $body, $query) {
                 $this->adminController->render($params, "admin/login");
@@ -122,9 +134,26 @@ class App
                 $this->adminController->isAuth();
                 $this->adminController->render($params, "admin/article");
             });
-            $r->addRoute('GET', ROOT_PATH . '/admin/articulo/{id:\d+}', function ($params, $body, $query) {
+            $r->addRoute('GET', ROOT_PATH . '/admin/articulo/{type:\w+}/{id:\d+}', function ($params, $body, $query) {
                 $this->adminController->isAuth();
-                $this->adminController->render($params, "admin/article");
+                $type = $params["type"];
+                $article = null;
+                switch ($type) {
+                    case "tecnico":
+                        $article = $this->technicalArticleController->getModel()->findOne($params);
+                        break;
+                    case "cientifico":
+                        $article = $this->scientificArticleController->getModel()->findOne($params);
+                        break;
+                    default:
+                        include_once(VIEW_PATH . '/errors/404.php');
+                        exit;
+                }
+                if ($article === null) {
+                    include_once(VIEW_PATH . '/errors/404.php');
+                    exit;
+                }
+                $this->adminController->render(["article" => $article], "admin/edit");
             });
         });
 
