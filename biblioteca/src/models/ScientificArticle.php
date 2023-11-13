@@ -51,7 +51,7 @@ class ScientificArticle extends Model
     {
         $year = $body['year'] ?? null;
         $search = $body['search'] ?? null;
-        $limit = $body['limit'] ?? 10;
+        $limit = $body['limit'] ?? 9;
         $page = $body['page'] ?? 1;
         $offset = ($page - 1) * $limit;
         $stmt = $this->pdo->prepare("SELECT *, 'cientifico' AS categoria, 'cientifico.png' AS imagen FROM public.pub_cientificas WHERE ano = ? OR LOWER(publicacion) LIKE ? LIMIT ? OFFSET ?");

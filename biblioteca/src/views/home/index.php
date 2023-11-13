@@ -86,11 +86,17 @@
 
 		<div class="container">
 			<div class="cabecera">
-				<img src="<?= PUBLIC_PATH . "/images/banner.png" ?>" alt="cabecera INIFAP" width="1150" />
+				<div class="cabecera-container">
+					<img src="<?= PUBLIC_PATH . "/images/banner.png" ?>" alt="cabecera INIFAP" />
+
+				</div>
 			</div>
 			<div class="search">
-				<input type="search" id="search" name="search" placeholder="Buscar por libro, autor, año, etc" />
-				<button type="sumbit" id="lupe"> <img src="<?= PUBLIC_PATH . "/images/lupita.png" ?>" width="32" height="32" /></button>
+				<div class="search-container">
+					<input type="search" id="search" name="search" placeholder="Buscar por libro, autor, año, etc" />
+					<button type="sumbit" id="lupe"> <img src="<?= PUBLIC_PATH . "/images/lupita.png" ?>" width="50" height="50" /></button>
+				</div>
+
 				<div class="filtro">
 					<button type="sumbit" id="filtro">Filtro</button>
 				</div>
@@ -98,100 +104,100 @@
 
 			<h3>Recien agregados</h3>
 
-			<div id="carrusel">
+			<div class="carousel">
 				<?php
 				$articles = $params['articles'];
 				$isScientific = $params['isScientific'];
 				?>
-				<a href="#" class="left-arrow"><img src="<?= PUBLIC_PATH . "/images/flecha2.png" ?>" width="42" height="63" /></a>
-				<?php foreach ($articles as $article) : ?>
-					<?php
-					$publicacion = $article['publicacion'];
-					$liga = $article['liga'];
-					$muestra = $article['muestra'];
-					$cuenta = $article['cuenta'];
-					$ano = $article['ano'];
-					$mensaje = $article['mensaje'];
-					$publicacionot = $isScientific ? $article['publicacionot'] : null;
-					$imagen = $article['imagen'];
-					$id = $article['id'];
-					?>
-					<div class="articulos">
-						<div class="product" id="product_<?= $id ?>">
-							<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
-							<h5><?= $publicacion ?></h5>
-							<a href="<?= URL_BASE . "/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>">leer</a>
+				<div class="carousel-inner">
+					<?php foreach ($articles as $article) : ?>
+						<?php
+						$publicacion = $article['publicacion'];
+						$liga = $article['liga'];
+						$muestra = $article['muestra'];
+						$cuenta = $article['cuenta'];
+						$ano = $article['ano'];
+						$mensaje = $article['mensaje'];
+						$publicacionot = $isScientific ? $article['publicacionot'] : null;
+						$imagen = $article['imagen'];
+						$id = $article['id'];
+						?>
+						<div class="carousel-item">
+							<div class="product" id="product_<?= $id ?>">
+								<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
+								<h5><?= $publicacion ?></h5>
+								<a href="<?= URL_BASE . "/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>">leer</a>
+							</div>
 						</div>
-					</div>
-				<?php endforeach; ?>
-				<a href="#" class="right-arrow"><img src="<?= PUBLIC_PATH . "/images/flecha.png" ?>" width="42" height="63" /></a>
+					<?php endforeach; ?>
+				</div>
+				<a class="carousel-control prev" href="#carousel" role="button">
+					<span class="carousel-control-icon">&lt;</span>
+				</a>
+				<a class="carousel-control next" href="#carousel" role="button">
+					<span class="carousel-control-icon">&gt;</span>
+				</a>
 			</div>
 
-			<h3>Cientificos</h3>
-			<div id="carrusel">
-				<?php
-				$articles = $params['articles'];
-				$isScientific = $params['isScientific'];
-				?>
-				<a href="#" class="left-arrow"><img src="<?= PUBLIC_PATH . "/images/flecha2.png" ?>" width="42" height="63" /></a>
-				<?php foreach ($articles as $article) : ?>
-					<?php
-					$publicacion = $article['publicacion'];
-					$liga = $article['liga'];
-					$muestra = $article['muestra'];
-					$cuenta = $article['cuenta'];
-					$ano = $article['ano'];
-					$mensaje = $article['mensaje'];
-					$publicacionot = $isScientific ? $article['publicacionot'] : null;
-					$imagen = $article['imagen'];
-					$id = $article['id'];
-					?>
-					<div class="articulos">
-						<div class="product" id="product_<?= $id ?>">
-							<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
-							<h5><?= $publicacion ?></h5>
-							<a href="<?= URL_BASE . "/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>">leer</a>
-						</div>
-					</div>
-				<?php endforeach; ?>
-				<a href="#" class="right-arrow"><img src="<?= PUBLIC_PATH . "/images/flecha.png" ?>" width="42" height="63" /></a>
-			</div>
-			<h3> Tecnicos</h3>
-			<div id="carrusel">
-				<?php
-				$articles = $params['articles'];
-				$isScientific = $params['isScientific'];
-				?>
-				<a href="#" class="left-arrow"><img src="<?= PUBLIC_PATH . "/images/flecha2.png" ?>" width="42" height="63" /></a>
-				<?php foreach ($articles as $article) : ?>
-					<?php
-					$publicacion = $article['publicacion'];
-					$liga = $article['liga'];
-					$muestra = $article['muestra'];
-					$cuenta = $article['cuenta'];
-					$ano = $article['ano'];
-					$mensaje = $article['mensaje'];
-					$publicacionot = $isScientific ? $article['publicacionot'] : null;
-					$imagen = $article['imagen'];
-					$id = $article['id'];
-					?>
-					<div class="articulos">
-						<div class="product" id="product_<?= $id ?>">
-							<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
-							<h5><?= $publicacion ?></h5>
-							<a href="<?= URL_BASE . "/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>">leer</a>
-						</div>
-					</div>
-				<?php endforeach; ?>
-				<a href="#" class="right-arrow"><img src="<?= PUBLIC_PATH . "/images/flecha.png" ?>" width="42" height="63" /></a>
-			</div>
+			<h3>Disponibles</h3>
 
+			<div class="disponibles">
+				<?php
+				$articles = $params['articles'];
+				$isScientific = $params['isScientific'];
+				?>
+				<?php foreach ($articles as $article) : ?>
+					<?php
+					$publicacion = $article['publicacion'];
+					$liga = $article['liga'];
+					$muestra = $article['muestra'];
+					$cuenta = $article['cuenta'];
+					$ano = $article['ano'];
+					$mensaje = $article['mensaje'];
+					$publicacionot = $isScientific ? $article['publicacionot'] : null;
+					$imagen = $article['imagen'];
+					$id = $article['id'];
+					?>
+					<div class="articulos">
+						<div class="card" id="product_<?= $id ?>">
+							<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
+							<h5><?= $publicacion ?></h5>
+							<a class="read-btn" href="<?= URL_BASE . "/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>">leer</a>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			</div>
 
 		</div>
 
 	</main>
 
 	<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+	<script>
+		const carousel = document.querySelector(".carousel");
+		const carouselInner = carousel.querySelector(".carousel-inner");
+		const carouselItems = carousel.querySelectorAll(".carousel-item");
+		const carouselControls = carousel.querySelectorAll(".carousel-control");
+
+		let index = 0;
+		let offset = 0;
+
+		carouselControls.forEach((control) => {
+			control.addEventListener("click", (event) => {
+				// Prevent the default action of the link
+				event.preventDefault();
+
+				const direction = control.classList.contains("prev") ? -1 : 1;
+
+				index = (index + direction + carouselItems.length) % carouselItems.length;
+				offset = -index * carousel.offsetWidth;
+
+				for (let item of carouselItems) {
+					item.style.transform = `translateX(${offset}px)`;
+				}
+			});
+		});
+	</script>
 </body>
 
 </html>
