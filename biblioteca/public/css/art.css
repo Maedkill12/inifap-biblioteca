@@ -1,93 +1,98 @@
-.cabecera{
-    max-width: 100%;
-    max-height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-    display: flex;
-  }
-  
-  .search {
-    width: 600px;
-    height: 50px;
-    max-width: 100%;
-    max-height: 100%;
-    margin: auto;
-   justify-content: center;
-    display: flex;
-  }
-  
-  .search input {
-    width: 600px;
-    height: 50px;
-    max-width: 100%;
-    max-height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-    background-color: rgba(30, 147, 92, 0.47);
-    color: #046e24;
-    border-color: rgba(30, 147, 92, 0.47);
-  }
-  
-  input::placeholder {
-    color: #046e24;
-    justify-content: center;
-    padding-left: 10px;
-  }
-  
-  .search button {
-    width: 75px;
-    height: 50px;
-    max-width: 100%;
-    max-height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-    background-color: rgba(30, 147, 92, 0.47);
-    color: #046e24;
-    border-color: rgba(30, 147, 92, 0.47);
-  }
-  
-  .subir button {
-    width: 100px;
-    height: 50px;
-    max-width: 100%;
-    max-height: 100%;
-    margin-left: 80%;
-    margin-right: auto;
-    justify-content: center;
-    background-color: rgba(30, 147, 92, 0.47);
-    color: #046e24;
-    border-color: rgba(30, 147, 92, 0.47);
-  }
+.cabecera {
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  display: flex;
+}
 
-  .titulo h5{
-  display: inline;  
+.search {
+  width: 600px;
+  height: 50px;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  justify-content: center;
+  display: flex;
+}
+
+.search input {
+  width: 600px;
+  height: 50px;
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  background-color: rgba(30, 147, 92, 0.47);
+  color: #046e24;
+  border-color: rgba(30, 147, 92, 0.47);
+}
+
+input::placeholder {
+  color: #046e24;
+  justify-content: center;
+  padding-left: 10px;
+}
+
+.search button {
+  width: 75px;
+  height: 50px;
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  background-color: rgba(30, 147, 92, 0.47);
+  color: #046e24;
+  border-color: rgba(30, 147, 92, 0.47);
+}
+
+.subir button {
+  width: 100px;
+  height: 50px;
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: 80%;
+  margin-right: auto;
+  justify-content: center;
+  background-color: rgba(30, 147, 92, 0.47);
+  color: #046e24;
+  border-color: rgba(30, 147, 92, 0.47);
+}
+
+.titulo h5 {
+  display: inline;
   color: #046e24;
   text-decoration: underline;
-  }
+}
 
-  .libros button{
-    background-color: rgba(30, 147, 92, 0.47);
-    border-color: rgba(30, 147, 92, 0.47);
-    justify-content: center;
-    max-width: 100%;
-    max-height: 100%;
-    margin-left: 80%;
-    margin-right: auto;    
-    display: grid;
-    text-align: center;  
-  }
+.libros button {
+  background-color: rgba(30, 147, 92, 0.47);
+  border-color: rgba(30, 147, 92, 0.47);
+  justify-content: center;
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: 80%;
+  margin-right: auto;
+  display: grid;
+  text-align: center;
+}
 
-  .libros {
-    display: flex;
-   justify-content: flex-start;
-    align-items: center;
-  }
+.libros {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 
-  input{
-    color: #046e24;
-    justify-content: center;
-    padding-left: 100px;
+input {
+  color: #046e24;
+  justify-content: center;
+  padding-left: 100px;
+}
+
+.form {
+  display: flex;
+  flex-flow: column wrap;
 }
