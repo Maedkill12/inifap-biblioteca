@@ -51,6 +51,7 @@ class App
             $r->addRoute('GET', ROOT_PATH . '/', function ($params, $body, $query) {
                 $type = $query['type'] ?? "tecnico";
                 $articles = $this->getAllArticles($query);
+                // $recent = array_slice($articles, 0, 5);
 
                 $this->homeController->render(["articles" => $articles, "isScientific" => $type === "cientifico", ...$params], "home");
             });
