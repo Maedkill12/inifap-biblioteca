@@ -24,7 +24,7 @@
 		gtag('config', 'G-HXXJYQTXCE');
 	</script>
 	<link rel='stylesheet' type='text/css' href='https://framework-gb.cdn.gob.mx/assets/styles/main.css'>
-	<link rel="stylesheet" href="<?= PUBLIC_PATH . '/css/art.css' ?>">
+	<link rel="stylesheet" href="<?= PUBLIC_PATH . '/css/edit.css' ?>">
 </head>
 
 <body>
@@ -129,10 +129,10 @@
 					<div>
 						<label>Mensaje</label><input name="mensaje" type="text" value="<?= $mensaje ?>" />
 					</div>
-					<div>
+					<div class="imagen">
 						<label>Imagen</label><input name="imagen" type="file" value="<?= $imagen ?>" />
 					</div>
-					<div>
+					<div class="PDF">
 						<label>PDF</label><input name="liga" type="file" value="<?= $liga ?>" />
 					</div>
 					<?php if ($isScientific) : ?>
@@ -143,7 +143,7 @@
 				</div>
 				<input type="hidden" name="id" value="<?= $id ?>" />
 				<div class="edita">
-					<button type="sumbit" id="editar"><img src="<?= PUBLIC_PATH . "/images/edit.png" ?>" width="32" height="32" />Guardar</button>
+					<button type="sumbit" id="editar"><img src="<?= PUBLIC_PATH . "/images/edit.png" ?>" width="75" height="42" />Guardar</button>
 				</div>
 			</div>
 		</div>
