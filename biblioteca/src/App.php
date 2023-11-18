@@ -30,17 +30,31 @@ class App
 
     private function getAllArticles($query)
     {
-        $type = $query['type'] ?? "tecnico";
-        $type = $type === "tecnico" ? "tecnico" : "cientifico";
-        // Fetch scientific articles
+        $type = $query['type'] ?? "todos";
         $articles = [];
 
         if ($type === "cientifico") {
             $articles = $this->scientificArticleController->getModel()->findMany($query);
-        } else {
+        } elseif ($type === "tecnico") {
             $articles = $this->technicalArticleController->getModel()->findMany($query);
+        } else {
+            $query["limit"] = floor(($query["limit"] ?? 12) / 2);
+
+            $technical = $this->technicalArticleController->getModel()->findMany($query);
+            $scientific = $this->scientificArticleController->getModel()->findMany($query);
+            $articles = array_merge($technical, $scientific);
+            shuffle($articles);
         }
 
+        return $articles;
+    }
+
+    private function getRecentArticles()
+    {
+        $technical = $this->technicalArticleController->getModel()->recents();
+        $scientific = $this->scientificArticleController->getModel()->recents();
+        $articles = array_merge($technical, $scientific);
+        // shuffle($articles);
         return $articles;
     }
 
@@ -50,10 +64,11 @@ class App
             // Home Routes
             $r->addRoute('GET', ROOT_PATH . '/', function ($params, $body, $query) {
                 $type = $query['type'] ?? "tecnico";
+                $page = $query['page'] ?? 1;
                 $articles = $this->getAllArticles($query);
-                // $recent = array_slice($articles, 0, 5);
+                $recent = $this->getRecentArticles();
 
-                $this->homeController->render(["articles" => $articles, "isScientific" => $type === "cientifico", ...$params], "home");
+                $this->homeController->render(["articles" => $articles, "isScientific" => $type === "cientifico", "page" => $page, "recent" => $recent, ...$params], "home");
             });
 
             // Scientific Article Routes
@@ -158,8 +173,6 @@ class App
             });
             $r->addRoute('GET', ROOT_PATH . '/admin/articulo/subir', function ($params, $body, $query) {
                 $this->adminController->isAuth();
-                $type = $params["type"];
-                $article = null;
                 $this->adminController->render($params, "admin/Subir");
             });
         });

@@ -91,23 +91,30 @@
 
 				</div>
 			</div>
-			<div class="search">
+			<div class="search-filtro-container">
 				<div class="search-container">
-					<input type="search" id="search" name="search" placeholder="Buscar por libro, autor, año, etc" />
-					<button type="sumbit" id="lupe"> <img src="<?= PUBLIC_PATH . "/images/lupita.png" ?>" width="50" height="50" /></button>
+					<input type="search" id="search" name="search" placeholder="Buscar por libro, año..." />
+					<button id="lupe"> <img src="<?= PUBLIC_PATH . "/images/lupita.png" ?>" width="50" height="50" /></button>
 				</div>
 
 				<div class="filtro">
-					<button type="sumbit" id="filtro">Filtro</button>
+					<button id="filtro">Filtro</button>
+					<!-- dropdown -->
+					<div id="dropdown" class="dropdown">
+						<button id="all-btn">Todos</button>
+						<button id="tech-btn">Técnico</button>
+						<button id="scientific-btn">Científico</button>
+					</div>
 				</div>
+
 			</div>
 
 			<h3>Recien agregados</h3>
 
 			<div class="carousel">
 				<?php
-				$articles = $params['articles'];
-				$isScientific = $params['isScientific'];
+				$articles = $params['recent'];
+
 				?>
 				<div class="carousel-inner">
 					<?php foreach ($articles as $article) : ?>
@@ -118,6 +125,7 @@
 						$cuenta = $article['cuenta'];
 						$ano = $article['ano'];
 						$mensaje = $article['mensaje'];
+						$isScientific =  $article['categoria'] == 'cientifico';
 						$publicacionot = $isScientific ? $article['publicacionot'] : null;
 						$imagen = $article['imagen'];
 						$id = $article['id'];
@@ -144,7 +152,7 @@
 			<div class="disponibles">
 				<?php
 				$articles = $params['articles'];
-				$isScientific = $params['isScientific'];
+
 				?>
 				<?php foreach ($articles as $article) : ?>
 					<?php
@@ -154,6 +162,7 @@
 					$cuenta = $article['cuenta'];
 					$ano = $article['ano'];
 					$mensaje = $article['mensaje'];
+					$isScientific =  $article['categoria'] == 'cientifico';
 					$publicacionot = $isScientific ? $article['publicacionot'] : null;
 					$imagen = $article['imagen'];
 					$id = $article['id'];
@@ -166,13 +175,31 @@
 						</div>
 					</div>
 				<?php endforeach; ?>
+				<?php if (count($articles) == 0) : ?>
+					<h3>No hay artículos disponibles</h3>
+				<?php endif; ?>
 			</div>
-
+			<?php
+			$page = $params["page"]
+			?>
+			<div class="buttons-container">
+				<span>Página <?= $page ?> </span>
+				<button id="prev-btn" class="btn-page" <?= $page > 1 ? "" : "disabled" ?>>Anterior</button>
+				<button id="next-btn" class="btn-page">Siguente</button>
+			</div>
 		</div>
 
 	</main>
 
 	<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+
+	<script>
+		const URL_BASE = "<?= URL_BASE ?>";
+		const API_BASE = "<?= API_BASE ?>";
+	</script>
+	<script src="<?= PUBLIC_PATH . "/js/home.js" ?>"></script>
+
+	<!-- Carousel -->
 	<script>
 		const carousel = document.querySelector(".carousel");
 		const carouselInner = carousel.querySelector(".carousel-inner");
@@ -184,7 +211,6 @@
 
 		carouselControls.forEach((control) => {
 			control.addEventListener("click", (event) => {
-				// Prevent the default action of the link
 				event.preventDefault();
 
 				const direction = control.classList.contains("prev") ? -1 : 1;

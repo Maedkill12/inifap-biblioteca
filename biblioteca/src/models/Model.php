@@ -21,6 +21,7 @@ abstract class Model
     abstract public function create(array $body): array;
     abstract public function findOne(array $body): array;
     abstract public function findMany(array $body): array;
+    abstract public function recents(): array;
     abstract public function update(array $body): array;
     abstract public function delete(array $body): array;
     abstract protected function getRecommendations(string $id): array;
