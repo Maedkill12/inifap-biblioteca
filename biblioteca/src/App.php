@@ -156,6 +156,12 @@ class App
                 }
                 $this->adminController->render(["article" => $article], "admin/edit");
             });
+            $r->addRoute('GET', ROOT_PATH . '/admin/articulo/subir', function ($params, $body, $query) {
+                $this->adminController->isAuth();
+                $type = $params["type"];
+                $article = null;
+                $this->adminController->render($params, "admin/Subir");
+            });
         });
 
         // Fetch method and URI from somewhere

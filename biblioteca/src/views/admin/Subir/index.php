@@ -86,6 +86,39 @@
 
         <div class="container">
             <h1>Subir Documentos</h1>
+            <img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
+            <div class="form">
+                <div>
+                    <label>Titulo</label><input name="publicacion" type="text" value="<?= $publicacion ?>" />
+                </div>
+                <div>
+                    <label>Muestra</label><input name="muestra" type="text" value="<?= $muestra ?>" />
+                </div>
+                <div>
+                    <label>Cuenta</label><input name="cuenta" type="text" value="<?= $cuenta ?>" />
+                </div>
+                <div>
+                    <label>Año</label><input name="ano" type="text" value="<?= $ano ?>" />
+                </div>
+                <div>
+                    <label>Mensaje</label><input name="mensaje" type="text" value="<?= $mensaje ?>" />
+                </div>
+                <div class="imagen">
+                    <label>Imagen</label><input name="imagen" type="file" value="<?= $imagen ?>" />
+                </div>
+                <div class="PDF">
+                    <label>PDF</label><input name="liga" type="file" value="<?= $liga ?>" />
+                </div>
+                <?php if ($isScientific) : ?>
+                    <div>
+                        <label>Publicación</label><input name="publicacionot" type="text" value="<?= $publicacionot ?>" />
+                    </div>
+                <?php endif ?>
+            </div>
+            <input type="hidden" name="id" value="<?= $id ?>" />
+            <div class="edita">
+                <button type="sumbit" id="editar"><img src="<?= PUBLIC_PATH . "/images/edit.png" ?>" width="75" height="42" />Guardar</button>
+            </div>
 
         </div>
     </main>

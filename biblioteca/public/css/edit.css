@@ -73,7 +73,7 @@
     justify-content: center;
     max-width: 100%;
     max-height: 100%;
-    margin-left: 480%;
+    margin-left: 200%;
     margin-right: auto;
     display: grid;
     text-align: center;
@@ -98,5 +98,8 @@
   .form {
     display: flex;
     flex-flow: column wrap;
+    justify-content: center; 
+    align-items: center;
+    margin-top: auto;
     }
 
