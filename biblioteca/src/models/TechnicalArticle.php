@@ -50,12 +50,28 @@ class TechnicalArticle extends Model
     {
 
         $year = $body['year'] ?? null;
-        $search = $body['search'] ?? null;
+        $search = strtolower($body['search'] ?? "");
+        $search = urldecode($search);
+        if (is_numeric($search)) {
+            $year = $search;
+        }
         $limit = $body['limit'] ?? 9;
         $page = $body['page'] ?? 1;
         $offset = ($page - 1) * $limit;
         $stmt = $this->pdo->prepare("SELECT *, 'tecnico' as categoria FROM public.pub_tecnicas WHERE ano = ? OR LOWER(publicacion) LIKE ? LIMIT ? OFFSET ?");
         $stmt->execute([$year, "%$search%", $limit, $offset]);
+        $result = $stmt->fetchAll();
+        if ($result) {
+            $data = $result;
+            return $data;
+        }
+        return [];
+    }
+
+    public function recents(): array
+    {
+        $stmt = $this->pdo->prepare("SELECT *, 'tecnico' as categoria FROM public.pub_tecnicas ORDER BY ano DESC LIMIT 5");
+        $stmt->execute();
         $result = $stmt->fetchAll();
         if ($result) {
             $data = $result;

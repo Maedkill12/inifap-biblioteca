@@ -30,17 +30,31 @@ class App
 
     private function getAllArticles($query)
     {
-        $type = $query['type'] ?? "tecnico";
-        $type = $type === "tecnico" ? "tecnico" : "cientifico";
-        // Fetch scientific articles
+        $type = $query['type'] ?? "todos";
         $articles = [];
 
         if ($type === "cientifico") {
             $articles = $this->scientificArticleController->getModel()->findMany($query);
-        } else {
+        } elseif ($type === "tecnico") {
             $articles = $this->technicalArticleController->getModel()->findMany($query);
+        } else {
+            $query["limit"] = floor(($query["limit"] ?? 12) / 2);
+
+            $technical = $this->technicalArticleController->getModel()->findMany($query);
+            $scientific = $this->scientificArticleController->getModel()->findMany($query);
+            $articles = array_merge($technical, $scientific);
+            shuffle($articles);
         }
 
+        return $articles;
+    }
+
+    private function getRecentArticles()
+    {
+        $technical = $this->technicalArticleController->getModel()->recents();
+        $scientific = $this->scientificArticleController->getModel()->recents();
+        $articles = array_merge($technical, $scientific);
+        // shuffle($articles);
         return $articles;
     }
 
@@ -50,10 +64,11 @@ class App
             // Home Routes
             $r->addRoute('GET', ROOT_PATH . '/', function ($params, $body, $query) {
                 $type = $query['type'] ?? "tecnico";
+                $page = $query['page'] ?? 1;
                 $articles = $this->getAllArticles($query);
-                // $recent = array_slice($articles, 0, 5);
+                $recent = $this->getRecentArticles();
 
-                $this->homeController->render(["articles" => $articles, "isScientific" => $type === "cientifico", ...$params], "home");
+                $this->homeController->render(["articles" => $articles, "isScientific" => $type === "cientifico", "page" => $page, "recent" => $recent, ...$params], "home");
             });
 
             // Scientific Article Routes
@@ -89,7 +104,30 @@ class App
             $r->addRoute("GET", ROOT_PATH . "/api/articulo/tecnico/{id:\d+}", function ($params, $body, $query) {
                 $this->technicalArticleController->findOne($params, $body, $query);
             });
-            $r->addRoute("PATCH", ROOT_PATH . "/api/articulo/tecnico/{id:\d+}", function ($params, $body, $query) {
+            $r->addRoute("POST", ROOT_PATH . "/api/articulo/tecnico/{id:\d+}", function ($params, $body, $query) {
+                if (isset($body["imagen"])) {
+                    // var_dump($body["imagen"]);
+                    // exit;
+                    $testFolder = $_SERVER['DOCUMENT_ROOT'] . ROOT_PATH . "/public/publicaciones";
+
+                    $file = $body["imagen"];
+                    $file_name = $file["name"];
+                    $file_tmp = $file["tmp_name"];
+
+                    $name = date("Y-m-d-H-i-s") . "-" . $file_name;
+                    move_uploaded_file($file_tmp, "$testFolder/$name");
+                    $body["imagen"] = $name;
+                } else if (isset($body["pdf"])) {
+                    $testFolder = $_SERVER['DOCUMENT_ROOT'] . ROOT_PATH . "/public/publicaciones";
+
+                    $file = $body["pdf"];
+                    $file_name = $file["name"];
+                    $file_tmp = $file["tmp_name"];
+
+                    $name = date("Y-m-d-H-i-s") . "-" . $file_name;
+                    move_uploaded_file($file_tmp, "$testFolder/$name");
+                    $body["liga"] = $name;
+                }
                 $this->technicalArticleController->update($params, $body, $query);
             });
             $r->addRoute("DELETE", ROOT_PATH . "/api/articulo/tecnico/{id:\d+}", function ($params, $body, $query) {
@@ -158,8 +196,6 @@ class App
             });
             $r->addRoute('GET', ROOT_PATH . '/admin/articulo/subir', function ($params, $body, $query) {
                 $this->adminController->isAuth();
-                $type = $params["type"];
-                $article = null;
                 $this->adminController->render($params, "admin/Subir");
             });
         });
@@ -179,14 +215,28 @@ class App
             $query = array_reduce($query, function ($carry, $item) {
                 return array_merge($carry, $item);
             }, []);
-        };
+        }
 
         $httpMethod = $_SERVER['REQUEST_METHOD'] ?? 'GET';
         $body = [];
 
         if (in_array($httpMethod, ['POST', 'PUT', 'PATCH', 'DELETE'])) {
+
             $body = json_decode(file_get_contents('php://input'), true) ?? [];
+
+            if (isset($_POST) && count($_POST) > 0 && count($body) === 0) {
+                $body = array_merge($body, $_POST);
+            }
+
+            if (isset($_FILES['pdf'])) {
+                $body['pdf'] = $_FILES['pdf'];
+            }
+
+            if (isset($_FILES['imagen'])) {
+                $body['imagen'] = $_FILES['imagen'];
+            }
         }
+
 
         $uri = rawurldecode($uri);
 

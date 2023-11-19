@@ -50,12 +50,28 @@ class ScientificArticle extends Model
     public function findMany(array $body): array
     {
         $year = $body['year'] ?? null;
-        $search = $body['search'] ?? null;
+        $search = strtolower($body['search'] ?? "");
+        $search = urldecode($search);
+        // if search is a number, search by year
+        if (is_numeric($search)) {
+            $year = $search;
+        }
         $limit = $body['limit'] ?? 9;
         $page = $body['page'] ?? 1;
         $offset = ($page - 1) * $limit;
         $stmt = $this->pdo->prepare("SELECT *, 'cientifico' AS categoria, 'cientifico.png' AS imagen FROM public.pub_cientificas WHERE ano = ? OR LOWER(publicacion) LIKE ? LIMIT ? OFFSET ?");
         $stmt->execute([$year, "%$search%", $limit, $offset]);
+        $result = $stmt->fetchAll();
+        if ($result) {
+            return $result;
+        }
+        return [];
+    }
+
+    public function recents(): array
+    {
+        $stmt = $this->pdo->prepare("SELECT *, 'cientifico' AS categoria, 'cientifico.png' AS imagen FROM public.pub_cientificas ORDER BY ano DESC LIMIT 5");
+        $stmt->execute();
         $result = $stmt->fetchAll();
         if ($result) {
             return $result;

@@ -15,78 +15,109 @@
   width: 100%;
 }
 
-.search {
-  width: 100%;
-  height: 50px;
-  max-width: 100%;
-  max-height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
+/* BUSCAR Y FILTRO */
+.search-filtro-container {
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
 }
 
 .search-container {
-  display: flex;
-  align-items: center;
-}
-
-.search input {
-  width: 600px;
-  height: 50px;
-  max-width: 100%;
-  max-height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
   background-color: rgba(30, 147, 92, 0.47);
-  color: #046e24;
-  border-color: rgba(30, 147, 92, 0.47);
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
-input::placeholder {
+.search-container input {
+  flex: 1 1 auto;
+  height: 100%;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  margin-left: 10px;
   color: #046e24;
-  justify-content: center;
-  padding-left: 100px;
+}
+
+.search-container input::placeholder {
+  color: #046e24;
 }
 
 .search-container button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
   width: 75px;
-  height: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
-  background-color: rgba(30, 147, 92, 0.47);
-  color: #046e24;
-  border-color: rgba(30, 147, 92, 0.47);
 }
 
-.filtro button {
-  width: 75px;
-  height: 50px;
-  max-width: 100%;
-  max-height: 100%;
-  margin-left: 80%;
-  margin-right: auto;
-  justify-content: center;
+.filtro {
+  position: relative;
+  z-index: 10;
+}
+
+.filtro > button {
   background-color: rgba(30, 147, 92, 0.47);
   color: #046e24;
   border-color: rgba(30, 147, 92, 0.47);
+  border-radius: 20px;
+  height: 100%;
+  width: 75px;
 }
+
+.dropdown {
+  position: absolute;
+  bottom: calc(-100% - 95px);
+  left: -260px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  z-index: 20;
+  overflow: hidden;
+  display: none;
+}
+
+.dropdown.active {
+  display: block;
+}
+
+.dropdown button {
+  width: 100%;
+  background-color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  height: 50px;
+  padding: 10px;
+}
+
+.dropdown button:hover {
+  background-color: rgba(221, 221, 221, 0.47);
+}
+
+/* FIN BUSCAR Y FILSTRO */
 
 .carousel {
   width: 600px;
   margin: 0 auto;
   overflow: hidden;
   position: relative;
+  z-index: 5;
 }
 
 .carousel-inner {
   width: 100%;
-  height: 400px;
+  /* height: 400px; */
   display: flex;
   transition: transform 0.5s ease;
-  z-index: 10;
+  z-index: 5;
 }
 
 .carousel-item {
@@ -184,12 +215,29 @@ input::placeholder {
   text-decoration: none;
 }
 
+.buttons-container {
+  margin: 20px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-page {
+  background-color: rgba(30, 147, 92, 0.47);
+  color: #046e24;
+  border-color: rgba(30, 147, 92, 0.47);
+  border-radius: 20px;
+  width: 100px;
+}
+
+.btn-page:disabled {
+  opacity: 0.5;
+}
+
 @media screen and (max-width: 1000px) {
   .disponibles {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .search input {
-    width: 300px;
   }
 }
 
@@ -200,11 +248,15 @@ input::placeholder {
   .carousel {
     width: 100%;
   }
-  .search {
-    margin-top: 30px;
+  .search-filtro-container {
     flex-direction: column;
+    gap: 10px;
+    height: auto;
   }
-  .search input {
+  .search-filtro-container .filtro {
+    align-self: flex-end;
+  }
+  .search-container {
     width: 100%;
   }
 }
