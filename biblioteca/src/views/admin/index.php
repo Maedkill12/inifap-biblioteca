@@ -101,7 +101,7 @@
 				<h2>Artículos disponibles</h2>
 				<?php
 				$articles = $params['articles'];
-				$isScientific = $params['isScientific'];
+
 				?>
 				<?php foreach ($articles as $article) : ?>
 					<?php
@@ -111,6 +111,7 @@
 					$cuenta = $article['cuenta'];
 					$ano = $article['ano'];
 					$mensaje = $article['mensaje'];
+					$isScientific = $article['categoria'] === 'cientifico';
 					$publicacionot = $isScientific ? $article['publicacionot'] : null;
 					$imagen = $article['imagen'];
 					$id = $article['id'];

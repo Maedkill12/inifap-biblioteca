@@ -28,5 +28,8 @@ const VIEW_PATH =  './src/views';
 const CONTROLLERS_PATH =  './src/controllers';
 const MODELS_PATH =  './src/modules';
 
+// var_dump($_FILES);
+// exit;
+
 $app = new Inifap\Biblioteca\App();
 $app->run();

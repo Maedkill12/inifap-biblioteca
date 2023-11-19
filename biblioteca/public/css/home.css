@@ -6,6 +6,15 @@
   align-items: center;
 }
 
+.cabecera .cabecera-container {
+  width: 100%;
+}
+
+.cabecera img {
+  /* background: red; */
+  width: 100%;
+}
+
 /* BUSCAR Y FILTRO */
 .search-filtro-container {
   display: flex;
@@ -94,14 +103,6 @@
 }
 
 /* FIN BUSCAR Y FILSTRO */
-.cabecera .cabecera-container {
-  width: 100%;
-}
-
-.cabecera img {
-  /* background: red; */
-  width: 100%;
-}
 
 .carousel {
   width: 600px;
