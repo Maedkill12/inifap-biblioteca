@@ -16,8 +16,11 @@ class TechnicalArticle extends Model
     public function create(array $body): array
     {
         ["publicacion" => $publicacion, "imagen" => $imagen, "liga" => $liga, "muestra" => $muestra, "cuenta" => $cuenta, "ano" => $ano, "mensaje" => $mensaje] = $body;
+
         $stmt = $this->pdo->prepare("INSERT INTO public.pub_tecnicas (publicacion,liga,muestra,cuenta,ano,mensaje,imagen) VALUES (?,?,?,?,?,?,?)");
+
         $stmt->execute([$publicacion, $liga, $muestra, $cuenta, $ano, $mensaje, $imagen]);
+
         if ($stmt->rowCount() > 0) {
             return [
                 "publicacion" => $publicacion,

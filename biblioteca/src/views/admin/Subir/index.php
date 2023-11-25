@@ -86,39 +86,51 @@
 
         <div class="container">
             <h1>Subir Documentos</h1>
-            <img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
-            <div class="form">
-                <div>
-                    <label>Titulo</label><input name="publicacion" type="text" value="<?= $publicacion ?>" />
-                </div>
-                <div>
-                    <label>Muestra</label><input name="muestra" type="text" value="<?= $muestra ?>" />
-                </div>
-                <div>
-                    <label>Cuenta</label><input name="cuenta" type="text" value="<?= $cuenta ?>" />
-                </div>
-                <div>
-                    <label>Año</label><input name="ano" type="text" value="<?= $ano ?>" />
-                </div>
-                <div>
-                    <label>Mensaje</label><input name="mensaje" type="text" value="<?= $mensaje ?>" />
-                </div>
-                <div class="imagen">
-                    <label>Imagen</label><input name="imagen" type="file" value="<?= $imagen ?>" />
-                </div>
-                <div class="PDF">
-                    <label>PDF</label><input name="liga" type="file" value="<?= $liga ?>" />
-                </div>
-                <?php if ($isScientific) : ?>
-                    <div>
-                        <label>Publicación</label><input name="publicacionot" type="text" value="<?= $publicacionot ?>" />
+
+            <form class="form" id="upload-form">
+                <div class="input-container">
+                    <div class="input-control">
+                        <label for="categoria">Categoría</label>
+                        <select id="categoria" name="categoria">
+                            <option value="tecnico" selected>Técnico</option>
+                            <option value="cientifico">Científico</option>
+                        </select>
                     </div>
-                <?php endif ?>
-            </div>
-            <input type="hidden" name="id" value="<?= $id ?>" />
-            <div class="edita">
-                <button type="sumbit" id="editar"><img src="<?= PUBLIC_PATH . "/images/edit.png" ?>" width="75" height="42" />Guardar</button>
-            </div>
+                    <div class="input-control">
+                        <label for="publicacion">Titulo</label><textarea id="publicacion" name="publicacion" type="text" required></textarea>
+                    </div>
+                    <div class="input-control">
+                        <label for="muestra">Muestra</label><input id="muestra" name="muestra" type="number" required />
+                    </div>
+                    <div class="input-control">
+                        <label for="cuenta">Cuenta</label><input id="cuenta" name="cuenta" type="number" required />
+                    </div>
+                    <div class="input-control">
+                        <label for="ano">Año</label><input id="ano" name="ano" type="number" required />
+                    </div>
+                    <div class="input-control">
+                        <label for="mensaje">Mensaje</label><textarea id="mensaje" name="mensaje" type="text"></textarea>
+                    </div>
+                    <!-- <div class="input-control">
+                        <label for="publicacionot">Publicación</label><textarea id="publicacionot" name="publicacionot" type="text"></textarea>
+                    </div> -->
+                    <div class="input-control">
+                        <label for="imagen">Imagen</label><input id="imagen" name="imagen" type="file" accept="image/png, image/jpeg, image/jpg" required />
+                    </div>
+
+                    <div class="input-control">
+                        <label for="pdf">PDF</label><input id="pdf" name="pdf" type="file" accept="application/pdf" required />
+                    </div>
+
+
+                </div>
+                <div>
+
+                    <div class="edita">
+                        <button type="sumbit" id="editar"><img src="<?= PUBLIC_PATH . "/images/edit.png" ?>" width="32" height="32" />Guardar</button>
+                    </div>
+                </div>
+            </form>
 
         </div>
     </main>
@@ -127,44 +139,11 @@
 
     <script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
 
-    <script type="text/javascript">
-        $gmx(document).ready(function() {
-
-            var consulta;
-
-            //hacemos focus al campo de búsqueda
-            $("#busqueda").focus();
-
-            //comprobamos si se pulsa una tecla
-            $("#busqueda").keyup(function(e) {
-
-                //obtenemos el texto introducido en el campo de búsqueda
-                consulta = $("#busqueda").val();
-
-                //hace la búsqueda
-
-                $.ajax({
-                    type: "POST",
-                    url: "buscar.php",
-                    data: "b=" + consulta,
-                    dataType: "html",
-                    beforeSend: function() {
-                        //imagen de carga
-                        $("#resultado").html("<p align='center'><img src='ajax-loader.gif' /></p>");
-                    },
-                    error: function() {
-                        alert("error petición ajax");
-                    },
-                    success: function(data) {
-                        document.getElementById("resultado").style.display = "block";
-                        $("#resultado").empty();
-                        $("#resultado").append(data);
-
-                    }
-                });
-            });
-        });
+    <script>
+        const URL_BASE = "<?= URL_BASE ?>";
+        const API_BASE = "<?= API_BASE ?>";
     </script>
+    <script src="<?= PUBLIC_PATH . "/js/upload.js" ?>"></script>
 
 </body>
 

@@ -62,13 +62,18 @@
   z-index: 10;
 }
 
-.filtro > button {
+.filtro > button,
+.filtro > a {
   background-color: rgba(30, 147, 92, 0.47);
   color: #046e24;
   border-color: rgba(30, 147, 92, 0.47);
   border-radius: 20px;
   height: 100%;
   width: 75px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
 
 .libros button {

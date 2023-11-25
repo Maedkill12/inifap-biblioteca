@@ -18,6 +18,7 @@ class ScientificArticle extends Model
         ["publicacion" => $publicacion, "liga" => $liga, "muestra" => $muestra, "cuenta" => $cuenta, "ano" => $ano, "mensaje" => $mensaje, "publicacionot" => $publicacionot] = $body;
         $stmt = $this->pdo->prepare("INSERT INTO public.pub_cientificas (publicacion,liga,muestra,cuenta,ano,mensaje,publicacionot) VALUES (?,?,?,?,?,?,?)");
         $stmt->execute([$publicacion, $liga, $muestra, $cuenta, $ano, $mensaje, $publicacionot]);
+
         if ($stmt->rowCount() > 0) {
             return [
                 "publicacion" => $publicacion,

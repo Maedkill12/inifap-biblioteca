@@ -99,7 +99,7 @@
 				</div>
 
 				<div class="filtro">
-					<button id="subir">Subir</button>
+					<a id="subir" href="<?= URL_BASE . "/admin/subir" ?>">Subir</a>
 				</div>
 
 			</div>
