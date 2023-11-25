@@ -134,7 +134,7 @@
 							<div class="product" id="product_<?= $id ?>">
 								<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
 								<h5><?= $publicacion ?></h5>
-								<a href="<?= URL_BASE . "/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>">leer</a>
+								<a target="_blank" href="<?= URL_BASE . "/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>">leer</a>
 							</div>
 						</div>
 					<?php endforeach; ?>
@@ -171,7 +171,7 @@
 						<div class="card" id="product_<?= $id ?>">
 							<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
 							<h5><?= $publicacion ?></h5>
-							<a class="read-btn" href="<?= URL_BASE . "/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>">leer</a>
+							<a class="read-btn" target="_blank" href="<?= URL_BASE . "/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>">leer</a>
 						</div>
 					</div>
 				<?php endforeach; ?>

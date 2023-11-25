@@ -102,6 +102,14 @@
   background-color: rgba(221, 221, 221, 0.47);
 }
 
+.dropdown:hover {
+  display: block;
+}
+
+.filtro > button:hover + .dropdown {
+  display: block;
+}
+
 /* FIN BUSCAR Y FILSTRO */
 
 .carousel {

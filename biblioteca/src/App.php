@@ -73,7 +73,13 @@ class App
 
             // Scientific Article Routes
             $r->addRoute('GET', ROOT_PATH . '/articulo/cientifico/{id:\d+}', function ($params, $body, $query) {
-                $this->scientificArticleController->render($params, "article");
+                $article = $this->scientificArticleController->getModel()->findOne($params);
+                if ($article === null) {
+                    include_once(VIEW_PATH . '/errors/404.php');
+                    exit;
+                }
+                $this->scientificArticleController->render(["article" => $article], "article");
+                // $this->scientificArticleController->render($params, "article");
             });
             $r->addRoute("GET", ROOT_PATH . "/api/articulo/cientifico", function ($params, $body, $query) {
                 $this->scientificArticleController->findMany($params, $body, $query);
@@ -93,7 +99,13 @@ class App
 
             // Technical Article Routes
             $r->addRoute('GET', ROOT_PATH . '/articulo/tecnico/{id:\d+}', function ($params, $body, $query) {
-                $this->technicalArticleController->render($params, "article");
+                $article = $this->technicalArticleController->getModel()->findOne($params);
+                if ($article === null) {
+                    include_once(VIEW_PATH . '/errors/404.php');
+                    exit;
+                }
+                $this->technicalArticleController->render(["article" => $article], "article");
+                // $this->technicalArticleController->render($params, "article");
             });
             $r->addRoute("GET", ROOT_PATH . "/api/articulo/tecnico", function ($params, $body, $query) {
                 $this->technicalArticleController->findMany($params, $body, $query);

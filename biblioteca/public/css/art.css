@@ -1,98 +1,53 @@
 .cabecera {
-  max-width: 100%;
-  max-height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
+  width: 100%;
   display: flex;
-}
-
-.search {
-  width: 600px;
-  height: 50px;
-  max-width: 100%;
-  max-height: 100%;
-  margin: auto;
+  flex-direction: row;
   justify-content: center;
-  display: flex;
-}
-
-.search input {
-  width: 600px;
-  height: 50px;
-  max-width: 100%;
-  max-height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
-  background-color: rgba(30, 147, 92, 0.47);
-  color: #046e24;
-  border-color: rgba(30, 147, 92, 0.47);
-}
-
-input::placeholder {
-  color: #046e24;
-  justify-content: center;
-  padding-left: 10px;
-}
-
-.search button {
-  width: 75px;
-  height: 50px;
-  max-width: 100%;
-  max-height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
-  background-color: rgba(30, 147, 92, 0.47);
-  color: #046e24;
-  border-color: rgba(30, 147, 92, 0.47);
-}
-
-.subir button {
-  width: 100px;
-  height: 50px;
-  max-width: 100%;
-  max-height: 100%;
-  margin-left: 80%;
-  margin-right: auto;
-  justify-content: center;
-  background-color: rgba(30, 147, 92, 0.47);
-  color: #046e24;
-  border-color: rgba(30, 147, 92, 0.47);
-}
-
-.titulo h5 {
-  display: inline;
-  color: #046e24;
-  text-decoration: underline;
-}
-
-.libros button {
-  background-color: rgba(30, 147, 92, 0.47);
-  border-color: rgba(30, 147, 92, 0.47);
-  justify-content: center;
-  max-width: 100%;
-  max-height: 100%;
-  margin-left: 80%;
-  margin-right: auto;
-  display: grid;
-  text-align: center;
-}
-
-.libros {
-  display: flex;
-  justify-content: flex-start;
   align-items: center;
 }
 
-input {
-  color: #046e24;
-  justify-content: center;
-  padding-left: 100px;
+.cabecera .cabecera-container {
+  width: 100%;
 }
 
-.form {
+.cabecera img {
+  /* background: red; */
+  width: 100%;
+}
+
+.libro {
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: row;
+
+  gap: 20px;
+}
+
+.info {
+  flex: 1 1 auto;
+}
+
+.info h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #046e24;
+}
+
+.info a {
+  text-decoration: none;
+  color: #046e24;
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba(30, 147, 92, 0.47);
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .libro {
+    flex-direction: column;
+  }
 }
