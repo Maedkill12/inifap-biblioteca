@@ -24,6 +24,7 @@ abstract class ArticleController extends Controller
         header('Content-Type: application/json; charset=utf-8');
         header('status: 400');
         $result = $this->model->create($body);
+
         if ($result) {
             header('status: 201');
             echo json_encode([

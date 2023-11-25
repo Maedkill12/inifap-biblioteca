@@ -24,9 +24,7 @@
 		gtag('config', 'G-HXXJYQTXCE');
 	</script>
 	<link rel='stylesheet' type='text/css' href='https://framework-gb.cdn.gob.mx/assets/styles/main.css'>
-	<?php
-	echo "<link rel='stylesheet' type='text/css' href='" . PUBLIC_PATH . "/assets/admin.css'>";
-	?>
+	<link rel="stylesheet" href="<?= PUBLIC_PATH . '/css/admin.css' ?>">
 </head>
 
 <body>
@@ -88,44 +86,52 @@
 		<!-- Lista de articulos para el administrador -->
 		<div class="container">
 			<div class="cabecera">
-				<img src="http://inifap.test/biblioteca/public/images/banner.png" alt="cabecera INIFAP" />
+				<div class="cabecera-container">
+					<img src="<?= PUBLIC_PATH . "/images/banner.png" ?>" alt="cabecera INIFAP" />
+
+				</div>
 			</div>
-			<div class="search">
-				<input type="search" id="search" name="search" placeholder="Buscar por libro, autor, año, etc" />
-				<button type="sumbit" id="lupe"> <img src="http://inifap.test/biblioteca/public/images/lupita.png" width="32" height="32" /></button>
+
+			<div class="search-filtro-container">
+				<div class="search-container">
+					<input type="search" id="search" name="search" placeholder="Buscar por libro, año..." />
+					<button id="lupe"> <img src="<?= PUBLIC_PATH . "/images/lupita.png" ?>" width="50" height="50" /></button>
+				</div>
+
+				<div class="filtro">
+					<a id="subir" href="<?= URL_BASE . "/admin/subir" ?>">Subir</a>
+				</div>
+
 			</div>
-			<div class="subir">
-				<button type="sumbit" id="subir">Subir<img src="http://inifap.test/biblioteca/public/images/up.png" width="32" height="32" /></button>
-			</div>
+
 			<div class="libros">
 				<h2>Artículos disponibles</h2>
 				<?php
 				$articles = $params['articles'];
 
 				?>
-				<?php foreach ($articles as $article) : ?>
-					<?php
-					$publicacion = $article['publicacion'];
-					$liga = $article['liga'];
-					$muestra = $article['muestra'];
-					$cuenta = $article['cuenta'];
-					$ano = $article['ano'];
-					$mensaje = $article['mensaje'];
-					$isScientific = $article['categoria'] === 'cientifico';
-					$publicacionot = $isScientific ? $article['publicacionot'] : null;
-					$imagen = $article['imagen'];
-					$id = $article['id'];
-					?>
-					<div>
-						<div id="product_<?= $id ?>">
+				<div class="libros-container">
+					<?php foreach ($articles as $article) : ?>
+						<?php
+						$publicacion = $article['publicacion'];
+						$liga = $article['liga'];
+						$muestra = $article['muestra'];
+						$cuenta = $article['cuenta'];
+						$ano = $article['ano'];
+						$mensaje = $article['mensaje'];
+						$isScientific = $article['categoria'] === 'cientifico';
+						$publicacionot = $isScientific ? $article['publicacionot'] : null;
+						$imagen = $article['imagen'];
+						$id = $article['id'];
+						?>
+						<div class="product" id="product_<?= $id ?>">
 							<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
 							<h5><?= $publicacion ?></h5>
 							<a href="<?= URL_BASE . "/admin/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>"><img src="<?= PUBLIC_PATH . "/images/edit.png" ?>" width="32" height="32" /></a>
 							<a><img src="<?= PUBLIC_PATH . "/images/delete.png" ?>" width="32" height="32" /></a>
 						</div>
-					</div>
-				<?php endforeach; ?>
-
+					<?php endforeach; ?>
+				</div>
 			</div>
 		</div>
 	</main>

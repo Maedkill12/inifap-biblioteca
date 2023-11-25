@@ -85,26 +85,46 @@
 
 
 		<div class="container">
-			<h1>Lista de articulos</h1>
+
 			<div class="cabecera">
-				<img src="http://inifap.test/biblioteca/public/images/banner.png" alt="cabecera INIFAP" />
-			</div>
-			<div class="search">
-				<input type="search" id="search" name="search" placeholder="Buscar por libro, autor, año, etc" />
-				<button type="sumbit" id="lupe"> <img src="http://inifap.test/biblioteca/public/images/lupita.png" width="32" height="32" /></button>
-				<div class="subir">
-					<button type="sumbit" id="subir">Subir<img src="http://inifap.test/biblioteca/public/images/up.png" width="32" height="32" /></button>
+				<div class="cabecera-container">
+					<img src="<?= PUBLIC_PATH . "/images/banner.png" ?>" alt="cabecera INIFAP" />
+
 				</div>
 			</div>
-			<div class="libros">
-				<img src="http://inifap.test/biblioteca/public/publicaciones/04 FT 103 Nemátodos digital.png" alt="Nematodos digital" width="167" height="250" />
-				<div class="titulo">
-					<h5>Titulo</h5><input id="titulo" type="text" />
-					<h5>Autor</h5><input id="autor" type="text" />
+
+			<h3>Detalles</h3>
+			<div class="libro">
+				<?php
+				$article = $params['article'];
+				$publicacion = $article['publicacion'];
+				$liga = $article['liga'];
+				$muestra = $article['muestra'];
+				$cuenta = $article['cuenta'];
+				$ano = $article['ano'];
+				$mensaje = $article['mensaje'];
+				$isScientific =  $article['categoria'] == 'cientifico';
+				$publicacionot = $isScientific ? $article['publicacionot'] : null;
+				$imagen = $article['imagen'];
+				$id = $article['id'];
+				?>
+				<div>
+					<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
 				</div>
-				<div class="edita">
-					<button type="sumbit" id="editar"><img src="http://inifap.test/biblioteca/public/images/edit.png" width="32" height="32" /></button>
-					<button type="sumbit" id="eliminar"><img src="http://inifap.test/biblioteca/public/images/delete.png" width="32" height="32" /></button>
+				<div class="info">
+					<h3>Título</h3>
+					<p><?= $publicacion ?></p>
+					<h3>Año</h3>
+					<p><?= $ano ?></p>
+					<h3>Descripción</h3>
+					<p>
+						<?php if ($publicacionot || $mensaje) : ?>
+							<?= $publicacionot ?> <br /> <?= $mensaje ?>
+						<?php else :  ?>
+							No hay descripción
+						<?php endif; ?>
+					</p>
+					<a target="_blank" href="<?= PUBLIC_PATH . "/publicaciones/" . $liga ?>">Abrir PDF</a>
 				</div>
 			</div>
 		</div>

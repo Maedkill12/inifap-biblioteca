@@ -73,18 +73,60 @@ class App
 
             // Scientific Article Routes
             $r->addRoute('GET', ROOT_PATH . '/articulo/cientifico/{id:\d+}', function ($params, $body, $query) {
-                $this->scientificArticleController->render($params, "article");
+                $article = $this->scientificArticleController->getModel()->findOne($params);
+                if ($article === null) {
+                    include_once(VIEW_PATH . '/errors/404.php');
+                    exit;
+                }
+                $this->scientificArticleController->render(["article" => $article], "article");
+                // $this->scientificArticleController->render($params, "article");
             });
             $r->addRoute("GET", ROOT_PATH . "/api/articulo/cientifico", function ($params, $body, $query) {
                 $this->scientificArticleController->findMany($params, $body, $query);
             });
             $r->addRoute("POST", ROOT_PATH . "/api/articulo/cientifico", function ($params, $body, $query) {
+
+                if (isset($body["imagen"])) {
+                    // var_dump($body["imagen"]);
+                    // exit;
+                    $testFolder = $_SERVER['DOCUMENT_ROOT'] . ROOT_PATH . "/public/publicaciones";
+
+                    $file = $body["imagen"];
+                    $file_name = $file["name"];
+                    $file_tmp = $file["tmp_name"];
+
+                    $name = date("Y-m-d-H-i-s") . "-" . $file_name;
+                    move_uploaded_file($file_tmp, "$testFolder/$name");
+                    $body["imagen"] = $name;
+                }
+                if (isset($body["pdf"])) {
+                    $testFolder = $_SERVER['DOCUMENT_ROOT'] . ROOT_PATH . "/public/publicaciones";
+
+                    $file = $body["pdf"];
+                    $file_name = $file["name"];
+                    $file_tmp = $file["tmp_name"];
+
+                    $name = date("Y-m-d-H-i-s") . "-" . $file_name;
+                    move_uploaded_file($file_tmp, "$testFolder/$name");
+                    $body["liga"] = $name;
+                }
                 $this->scientificArticleController->create($params, $body, $query);
             });
             $r->addRoute("GET", ROOT_PATH . "/api/articulo/cientifico/{id:\d+}", function ($params, $body, $query) {
                 $this->scientificArticleController->findOne($params, $body, $query);
             });
-            $r->addRoute("PATCH", ROOT_PATH . "/api/articulo/cientifico/{id:\d+}", function ($params, $body, $query) {
+            $r->addRoute("POST", ROOT_PATH . "/api/articulo/cientifico/{id:\d+}", function ($params, $body, $query) {
+                if (isset($body["pdf"])) {
+                    $testFolder = $_SERVER['DOCUMENT_ROOT'] . ROOT_PATH . "/public/publicaciones";
+
+                    $file = $body["pdf"];
+                    $file_name = $file["name"];
+                    $file_tmp = $file["tmp_name"];
+
+                    $name = date("Y-m-d-H-i-s") . "-" . $file_name;
+                    move_uploaded_file($file_tmp, "$testFolder/$name");
+                    $body["liga"] = $name;
+                }
                 $this->scientificArticleController->update($params, $body, $query);
             });
             $r->addRoute("DELETE", ROOT_PATH . "/api/articulo/cientifico/{id:\d+}", function ($params, $body, $query) {
@@ -93,15 +135,46 @@ class App
 
             // Technical Article Routes
             $r->addRoute('GET', ROOT_PATH . '/articulo/tecnico/{id:\d+}', function ($params, $body, $query) {
-                $this->technicalArticleController->render($params, "article");
+                $article = $this->technicalArticleController->getModel()->findOne($params);
+                if ($article === null) {
+                    include_once(VIEW_PATH . '/errors/404.php');
+                    exit;
+                }
+                $this->technicalArticleController->render(["article" => $article], "article");
+                // $this->technicalArticleController->render($params, "article");
             });
             $r->addRoute("GET", ROOT_PATH . "/api/articulo/tecnico", function ($params, $body, $query) {
                 $this->technicalArticleController->findMany($params, $body, $query);
             });
             $r->addRoute("POST", ROOT_PATH . "/api/articulo/tecnico", function ($params, $body, $query) {
+                if (isset($body["imagen"])) {
+                    // var_dump($body["imagen"]);
+                    // exit;
+                    $testFolder = $_SERVER['DOCUMENT_ROOT'] . ROOT_PATH . "/public/publicaciones";
+
+                    $file = $body["imagen"];
+                    $file_name = $file["name"];
+                    $file_tmp = $file["tmp_name"];
+
+                    $name = date("Y-m-d-H-i-s") . "-" . $file_name;
+                    move_uploaded_file($file_tmp, "$testFolder/$name");
+                    $body["imagen"] = $name;
+                }
+                if (isset($body["pdf"])) {
+                    $testFolder = $_SERVER['DOCUMENT_ROOT'] . ROOT_PATH . "/public/publicaciones";
+
+                    $file = $body["pdf"];
+                    $file_name = $file["name"];
+                    $file_tmp = $file["tmp_name"];
+
+                    $name = date("Y-m-d-H-i-s") . "-" . $file_name;
+                    move_uploaded_file($file_tmp, "$testFolder/$name");
+                    $body["liga"] = $name;
+                }
                 $this->technicalArticleController->create($params, $body, $query);
             });
             $r->addRoute("GET", ROOT_PATH . "/api/articulo/tecnico/{id:\d+}", function ($params, $body, $query) {
+
                 $this->technicalArticleController->findOne($params, $body, $query);
             });
             $r->addRoute("POST", ROOT_PATH . "/api/articulo/tecnico/{id:\d+}", function ($params, $body, $query) {
@@ -117,7 +190,8 @@ class App
                     $name = date("Y-m-d-H-i-s") . "-" . $file_name;
                     move_uploaded_file($file_tmp, "$testFolder/$name");
                     $body["imagen"] = $name;
-                } else if (isset($body["pdf"])) {
+                }
+                if (isset($body["pdf"])) {
                     $testFolder = $_SERVER['DOCUMENT_ROOT'] . ROOT_PATH . "/public/publicaciones";
 
                     $file = $body["pdf"];
@@ -194,9 +268,9 @@ class App
                 }
                 $this->adminController->render(["article" => $article], "admin/edit");
             });
-            $r->addRoute('GET', ROOT_PATH . '/admin/articulo/subir', function ($params, $body, $query) {
+            $r->addRoute('GET', ROOT_PATH . '/admin/subir', function ($params, $body, $query) {
                 $this->adminController->isAuth();
-                $this->adminController->render($params, "admin/Subir");
+                $this->adminController->render($params, "admin/subir");
             });
         });
 
