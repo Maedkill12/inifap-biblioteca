@@ -1,5 +1,6 @@
 const categorySelect = document.querySelector("#categoria");
 const uploadForm = document.querySelector("#upload-form");
+const loaderContainer = document.querySelector(".loader-container");
 
 categorySelect.addEventListener("change", (e) => {
   const category = e.target.value;
@@ -30,30 +31,108 @@ uploadForm.addEventListener("submit", (e) => {
   const categoria = formData.get("categoria");
   const urlPost = `${API_BASE}/articulo/${categoria}`;
 
+  // check if the fields are filled
+  if (categoria === "") {
+    Toastify({
+      text: "Debe seleccionar una categoría",
+
+      duration: 3000,
+      style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+      },
+    }).showToast();
+    return;
+  }
+
+  if (formData.get("publicacion") === "") {
+    Toastify({
+      text: "Debe ingresar un título",
+
+      duration: 3000,
+      style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+      },
+    }).showToast();
+    return;
+  }
+
+  if (formData.get("muestra") === "") {
+    Toastify({
+      text: "Debe ingresar una muestra",
+
+      duration: 3000,
+      style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+      },
+    }).showToast();
+    return;
+  }
+
+  if (formData.get("cuenta") === "") {
+    Toastify({
+      text: "Debe ingresar una cuenta",
+
+      duration: 3000,
+      style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+      },
+    }).showToast();
+    return;
+  }
+
+  if (formData.get("pdf") === "") {
+    Toastify({
+      text: "Debe ingresar un pdf",
+
+      duration: 3000,
+      style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+      },
+    }).showToast();
+    return;
+  }
+
   const xhr = new XMLHttpRequest();
   xhr.open("POST", urlPost, true);
-  //   xhr.setRequestHeader("Content-type", "application/json");
   xhr.onload = function () {
+    hideLoading();
     if (this.status === 201) {
-      //   console.log(this.responseText);
-      //   return;
-      // console.log(this.responseText);
       const response = JSON.parse(this.responseText);
       console.log(response);
       if (response.status === "success") {
-        alert("Artículo creado correctamente");
-        // refresh the page
+        Toastify({
+          text: "Artículo creado correctamente",
+
+          duration: 3000,
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+          },
+        }).showToast();
         window.location.reload();
-        // window.location.href = URL_BASE + "/admin";
       } else {
         console.log(this.status, this.responseText);
-        alert("Error al crear el artículo");
+        Toastify({
+          text: "Error al crear el artículo",
+
+          duration: 3000,
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+          },
+        }).showToast();
       }
     } else {
       console.log(this.status, this.responseText);
-      alert("Error al crear el artículo");
+      Toastify({
+        text: "Error al crear el artículo",
+
+        duration: 3000,
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+      }).showToast();
     }
   };
+  displayLoading();
   xhr.send(formData);
 });
 
@@ -76,3 +155,11 @@ function createImagen() {
         `;
   return imagen;
 }
+
+const displayLoading = () => {
+  loaderContainer.style.display = "flex";
+};
+
+const hideLoading = () => {
+  loaderContainer.style.display = "none";
+};

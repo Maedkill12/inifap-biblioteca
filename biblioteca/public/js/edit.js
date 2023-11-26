@@ -1,4 +1,5 @@
 const editForm = document.querySelector("#edit-form");
+const loaderContainer = document.querySelector(".loader-container");
 
 editForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -8,7 +9,14 @@ editForm.addEventListener("submit", (e) => {
   const urlPatch = `${API_BASE}/articulo/${categoria}/${id}`;
 
   if (!categoria || !id) {
-    alert("Error al editar el artículo");
+    Toastify({
+      text: "Error al editar el artículo",
+
+      duration: 3000,
+      style: {
+        background: "linear-gradient(to right, #ff5050, #cc0000)",
+      },
+    }).showToast();
     return;
   }
 
@@ -18,25 +26,50 @@ editForm.addEventListener("submit", (e) => {
 
   const xhr = new XMLHttpRequest();
   xhr.open("POST", urlPatch, true);
-  //   xhr.setRequestHeader("Content-type", "application/json");
   xhr.onload = function () {
+    hideLoading();
     if (this.status === 200) {
-      //   console.log(this.responseText);
-      //   return;
-
       const response = JSON.parse(this.responseText);
 
       if (response.status === "success") {
-        alert("Artículo editado correctamente");
-        // refresh the page
-        window.location.reload();
-        // window.location.href = URL_BASE + "/admin";
+        Toastify({
+          text: "Artículo editado correctamente",
+
+          duration: 3000,
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+          },
+        }).showToast();
+        // window.location.reload();
       } else {
-        alert("Error al editar el artículo");
+        Toastify({
+          text: "Error al editar el artículo",
+
+          duration: 3000,
+          style: {
+            background: "linear-gradient(to right, #ff5050, #cc0000)",
+          },
+        }).showToast();
       }
     } else {
-      alert("Error al editar el artículo");
+      Toastify({
+        text: "Error al editar el artículo",
+
+        duration: 3000,
+        style: {
+          background: "linear-gradient(to right, #ff5050, #cc0000)",
+        },
+      }).showToast();
     }
   };
+  displayLoading();
   xhr.send(formData);
 });
+
+const displayLoading = () => {
+  loaderContainer.style.display = "flex";
+};
+
+const hideLoading = () => {
+  loaderContainer.style.display = "none";
+};

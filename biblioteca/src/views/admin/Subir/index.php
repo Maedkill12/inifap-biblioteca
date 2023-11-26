@@ -24,10 +24,14 @@
         gtag('config', 'G-HXXJYQTXCE');
     </script>
     <link rel='stylesheet' type='text/css' href='https://framework-gb.cdn.gob.mx/assets/styles/main.css'>
+    <link rel="stylesheet" href="<?= PUBLIC_PATH . '/css/toastify.min.css' ?>">
     <link rel="stylesheet" href="<?= PUBLIC_PATH . '/css/up.css' ?>">
 </head>
 
 <body>
+    <div class="loader-container">
+        <div class="spinner"></div>
+    </div>
     <main class="page">
 
         <nav class="navbar navbar-inverse sub-navbar navbar-fixed-top">
@@ -138,6 +142,7 @@
     <!--<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>-->
 
     <script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+    <script src="<?= PUBLIC_PATH . "/js/toastify-js.js" ?>"></script>
 
     <script>
         const URL_BASE = "<?= URL_BASE ?>";
