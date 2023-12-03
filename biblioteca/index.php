@@ -32,4 +32,13 @@ const MODELS_PATH =  './src/modules';
 // exit;
 
 $app = new Inifap\Biblioteca\App();
+
+use RateLimiter\Limiter;
+
+// Limit to 6 iterations per second
+$limiter = new Limiter(6, 1);
+
+$limiter->await();
+
+// Make your rate limited call here
 $app->run();
