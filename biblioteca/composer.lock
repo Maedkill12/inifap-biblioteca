@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "099e02c34ab589dfa1308271ef2829ba",
+    "content-hash": "154c976bce5800d52c867f3d1e83414e",
     "packages": [
         {
             "name": "graham-campbell/result-type",
@@ -67,6 +67,47 @@
                 }
             ],
             "time": "2023-02-25T20:23:15+00:00"
+        },
+        {
+            "name": "macroman/rate-limiter",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MacroMan/rate-limiter.git",
+                "reference": "defa1f1f59c724ebe0e333db744fa42f7d55f56a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MacroMan/rate-limiter/zipball/defa1f1f59c724ebe0e333db744fa42f7d55f56a",
+                "reference": "defa1f1f59c724ebe0e333db744fa42f7d55f56a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4|>=8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "RateLimiter": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "David Wakelin",
+                    "email": "hello@davidwakelin.co.uk"
+                }
+            ],
+            "description": "General framework agnostic rate limiter",
+            "homepage": "https://github.com/MacroMan/rate-limiter",
+            "support": {
+                "issues": "https://github.com/MacroMan/rate-limiter/issues",
+                "source": "https://github.com/MacroMan/rate-limiter/tree/1.0.3"
+            },
+            "time": "2022-02-28T09:59:08+00:00"
         },
         {
             "name": "nikic/fast-route",

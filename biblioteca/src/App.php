@@ -85,7 +85,7 @@ class App
                 $this->scientificArticleController->findMany($params, $body, $query);
             });
             $r->addRoute("POST", ROOT_PATH . "/api/articulo/cientifico", function ($params, $body, $query) {
-
+                $this->adminController->isAuth();
                 if (isset($body["imagen"])) {
                     // var_dump($body["imagen"]);
                     // exit;
@@ -116,6 +116,7 @@ class App
                 $this->scientificArticleController->findOne($params, $body, $query);
             });
             $r->addRoute("POST", ROOT_PATH . "/api/articulo/cientifico/{id:\d+}", function ($params, $body, $query) {
+                $this->adminController->isAuth();
                 if (isset($body["pdf"])) {
                     $testFolder = $_SERVER['DOCUMENT_ROOT'] . ROOT_PATH . "/public/publicaciones";
 
@@ -130,6 +131,7 @@ class App
                 $this->scientificArticleController->update($params, $body, $query);
             });
             $r->addRoute("DELETE", ROOT_PATH . "/api/articulo/cientifico/{id:\d+}", function ($params, $body, $query) {
+                $this->adminController->isAuth();
                 $this->scientificArticleController->delete($params, $body, $query);
             });
 
@@ -147,6 +149,7 @@ class App
                 $this->technicalArticleController->findMany($params, $body, $query);
             });
             $r->addRoute("POST", ROOT_PATH . "/api/articulo/tecnico", function ($params, $body, $query) {
+                $this->adminController->isAuth();
                 if (isset($body["imagen"])) {
                     // var_dump($body["imagen"]);
                     // exit;
@@ -178,6 +181,7 @@ class App
                 $this->technicalArticleController->findOne($params, $body, $query);
             });
             $r->addRoute("POST", ROOT_PATH . "/api/articulo/tecnico/{id:\d+}", function ($params, $body, $query) {
+                $this->adminController->isAuth();
                 if (isset($body["imagen"])) {
                     // var_dump($body["imagen"]);
                     // exit;
@@ -205,6 +209,7 @@ class App
                 $this->technicalArticleController->update($params, $body, $query);
             });
             $r->addRoute("DELETE", ROOT_PATH . "/api/articulo/tecnico/{id:\d+}", function ($params, $body, $query) {
+                $this->adminController->isAuth();
                 $this->technicalArticleController->delete($params, $body, $query);
             });
 
@@ -233,9 +238,11 @@ class App
                 $this->adminController->isAuth();
 
                 $type = $query['type'] ?? "tecnico";
+                $page = $query['page'] ?? 1;
+
                 $articles = $this->getAllArticles($query);
 
-                $this->adminController->render(["articles" => $articles, "isScientific" => $type === "cientifico", ...$params], "admin");
+                $this->adminController->render(["articles" => $articles, "isScientific" => $type === "cientifico", "page" => $page, ...$params], "admin");
             });
             $r->addRoute('GET', ROOT_PATH . '/admin/login', function ($params, $body, $query) {
                 $this->adminController->render($params, "admin/login");
