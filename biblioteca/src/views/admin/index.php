@@ -24,10 +24,15 @@
 		gtag('config', 'G-HXXJYQTXCE');
 	</script>
 	<link rel='stylesheet' type='text/css' href='https://framework-gb.cdn.gob.mx/assets/styles/main.css'>
+	<link rel="stylesheet" href="<?= PUBLIC_PATH . '/css/toastify.min.css' ?>">
 	<link rel="stylesheet" href="<?= PUBLIC_PATH . '/css/admin.css' ?>">
 </head>
 
 <body>
+	<div class="loader-container">
+		<div class="spinner"></div>
+	</div>
+
 	<main class="page">
 
 		<nav class="navbar navbar-inverse sub-navbar navbar-fixed-top">
@@ -119,18 +124,34 @@
 						$cuenta = $article['cuenta'];
 						$ano = $article['ano'];
 						$mensaje = $article['mensaje'];
+						$categoria = $article['categoria'];
 						$isScientific = $article['categoria'] === 'cientifico';
 						$publicacionot = $isScientific ? $article['publicacionot'] : null;
 						$imagen = $article['imagen'];
 						$id = $article['id'];
 						?>
 						<div class="product" id="product_<?= $id ?>">
-							<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" width="167" height="250" />
-							<h5><?= $publicacion ?></h5>
-							<a href="<?= URL_BASE . "/admin/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>"><img src="<?= PUBLIC_PATH . "/images/edit.png" ?>" width="32" height="32" /></a>
-							<a><img src="<?= PUBLIC_PATH . "/images/delete.png" ?>" width="32" height="32" /></a>
+							<div>
+								<img src="<?= PUBLIC_PATH . "/publicaciones/" . $imagen ?>" alt="<?= $publicacion ?>" />
+								<h5><?= $publicacion ?></h5>
+							</div>
+							<div>
+								<a href="<?= URL_BASE . "/admin/articulo/" . ($isScientific ? "cientifico/" : "tecnico/") . $id ?>"><img src="<?= PUBLIC_PATH . "/images/edit.png" ?>" width="32" height="32" /></a>
+								<a onclick="onDelete('<?= $id ?>', '<?= $categoria ?>')"><img src="<?= PUBLIC_PATH . "/images/delete.png" ?>" width="32" height="32" /></a>
+							</div>
 						</div>
 					<?php endforeach; ?>
+					<?php if (count($articles) == 0) : ?>
+						<h3>No hay artículos disponibles</h3>
+					<?php endif; ?>
+				</div>
+				<?php
+				$page = $params["page"]
+				?>
+				<div class="buttons-container">
+					<span>Página <?= $page ?> </span>
+					<button id="prev-btn" class="btn-page" <?= $page > 1 ? "" : "disabled" ?>>Anterior</button>
+					<button id="next-btn" class="btn-page">Siguente</button>
 				</div>
 			</div>
 		</div>
@@ -139,46 +160,14 @@
 	<!--<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>-->
 
 	<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+	<script src="<?= PUBLIC_PATH . "/js/toastify-js.js" ?>"></script>
 
-	<script type="text/javascript">
-		$gmx(document).ready(function() {
 
-			var consulta;
-
-			//hacemos focus al campo de búsqueda
-			$("#busqueda").focus();
-
-			//comprobamos si se pulsa una tecla
-			$("#busqueda").keyup(function(e) {
-
-				//obtenemos el texto introducido en el campo de búsqueda
-				consulta = $("#busqueda").val();
-
-				//hace la búsqueda
-
-				$.ajax({
-					type: "POST",
-					url: "buscar.php",
-					data: "b=" + consulta,
-					dataType: "html",
-					beforeSend: function() {
-						//imagen de carga
-						$("#resultado").html("<p align='center'><img src='ajax-loader.gif' /></p>");
-					},
-					error: function() {
-						alert("error petición ajax");
-					},
-					success: function(data) {
-						document.getElementById("resultado").style.display = "block";
-						$("#resultado").empty();
-						$("#resultado").append(data);
-
-					}
-				});
-			});
-		});
+	<script>
+		const URL_BASE = "<?= URL_BASE ?>";
+		const API_BASE = "<?= API_BASE ?>";
 	</script>
-
+	<script src="<?= PUBLIC_PATH . "/js/admin.js" ?>"></script>
 </body>
 
 </html>
