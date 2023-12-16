@@ -1,3 +1,20 @@
+.cabecera {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.cabecera .cabecera-container {
+  width: 100%;
+}
+
+.cabecera img {
+  /* background: red; */
+  width: 100%;
+}
+
 .InicioSesion {
   margin: 0 auto;
   max-width: 100%;
@@ -35,7 +52,6 @@
 
 input::placeholder {
   color: #046e24;
-  padding-left: 230px;
   justify-content: center;
   display: grid;
 }
