@@ -89,13 +89,17 @@
 
 
 		<div class="container">
-			<img src="<?= PUBLIC_PATH . "/images/banner.png" ?>" alt="cabecera INIFAP" width="1200" />
+			<div class="cabecera">
+				<div class="cabecera-container">
+					<img src="<?= PUBLIC_PATH . "/images/banner.png" ?>" alt="cabecera INIFAP" />
+
+				</div>
+			</div>
 			<div class="InicioSesion">
 				<img src="<?= PUBLIC_PATH . "/images/candado.png" ?>" alt="candado" width="161" height="163" />
 				<h3>Modo Administrador</h3>
 				<input type="password" id="password" name="password" placeholder="Ingrese la clave" />
 				<button id="login">Entrar</button>
-				<a>Olvide mi clave de acceso</a>
 			</div>
 		</div>
 	</main>
