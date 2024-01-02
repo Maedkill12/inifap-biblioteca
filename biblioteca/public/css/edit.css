@@ -1,0 +1,100 @@
+.cabecera {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.cabecera .cabecera-container {
+  width: 100%;
+}
+
+.cabecera img {
+  /* background: red; */
+  width: 100%;
+}
+
+.container a,
+h2 {
+  color: #046e24;
+}
+
+.form {
+  justify-content: space-between;
+  display: flex;
+  gap: 20px;
+}
+
+.input-container {
+  width: 100%;
+}
+
+.input-control {
+  display: flex;
+  margin: 10px 0;
+}
+
+.input-control label {
+  width: 130px;
+  color: #046e24;
+}
+
+.input-control input,
+.input-control textarea {
+  width: 100%;
+
+  background-color: rgba(30, 147, 92, 0.47);
+  border-color: rgba(30, 147, 92, 0.47);
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+.edita button {
+  background-color: rgba(30, 147, 92, 0.47);
+  border-color: rgba(30, 147, 92, 0.47);
+  color: #046e24;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .form {
+    flex-direction: column;
+  }
+  .input-control {
+    flex-direction: column;
+  }
+}
+
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #046e24 transparent #046e24 transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.2s linear infinite;
+}
+
+@keyframes spin-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader-container {
+  width: 100%;
+  height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background: #0000003a;
+  z-index: 10;
+}

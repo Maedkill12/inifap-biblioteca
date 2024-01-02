@@ -1,0 +1,53 @@
+.cabecera {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.cabecera .cabecera-container {
+  width: 100%;
+}
+
+.cabecera img {
+  /* background: red; */
+  width: 100%;
+}
+
+.libro {
+  display: flex;
+  flex-direction: row;
+
+  gap: 20px;
+}
+
+.info {
+  flex: 1 1 auto;
+}
+
+.info h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #046e24;
+}
+
+.info a {
+  text-decoration: none;
+  color: #046e24;
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba(30, 147, 92, 0.47);
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .libro {
+    flex-direction: column;
+  }
+}
